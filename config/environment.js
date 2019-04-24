@@ -17,12 +17,12 @@ module.exports = function(environment) {
       }
     },
     firebase: {
-      apiKey: "AIzaSyDqrFaUudOUhz4FTUC-iBRsflu8cu7MekM",
-      authDomain: "workout-tracker-ac55f.firebaseapp.com",
-      databaseURL: "https://workout-tracker-ac55f.firebaseio.com",
-      projectId: "workout-tracker-ac55f",
-      storageBucket: "workout-tracker-ac55f.appspot.com",
-      messagingSenderId: "921147334708"
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.FIREBASE_DATABASE_URL,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
     },
 
     APP: {
