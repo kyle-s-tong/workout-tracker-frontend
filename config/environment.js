@@ -16,6 +16,14 @@ module.exports = function(environment) {
         Date: false
       }
     },
+    firebase: {
+      apiKey: "AIzaSyDqrFaUudOUhz4FTUC-iBRsflu8cu7MekM",
+      authDomain: "workout-tracker-ac55f.firebaseapp.com",
+      databaseURL: "https://workout-tracker-ac55f.firebaseio.com",
+      projectId: "workout-tracker-ac55f",
+      storageBucket: "workout-tracker-ac55f.appspot.com",
+      messagingSenderId: "921147334708"
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
