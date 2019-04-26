@@ -7,8 +7,11 @@ export default DS.RESTAdapter.extend({
     host: 'http://localhost:8000',
     namespace: 'api',
     headers: computed('session.data.authenticated.token', function () {
-        return {
-            'x-authentication': this.session.data.authenticated.token
+        const headers = {};
+        if (this.session.isAuthenticated) {
+          headers['x-authentication'] = `${this.session.data.authenticated.token}`;
         }
+    
+        return headers;
     })
 });
