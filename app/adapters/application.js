@@ -1,12 +1,14 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default DS.RESTAdapter.extend({
+    session: service(), 
     host: 'http://localhost:8000',
     namespace: 'api',
-    headers: computed(function () {
+    headers: computed('session.data.authenticated.token', function () {
         return {
-            'x-authentication': 'e13a991963cca255ec5b297e28e8d051'
+            'x-authentication': this.session.data.authenticated.token
         }
     })
 });
