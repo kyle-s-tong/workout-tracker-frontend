@@ -1,12 +1,12 @@
 {{outlet}}
 
 <nav>
-    {{#if session.isAuthenticated}}
-        <button {{action "logout"}}>Logout</button>
-        {{session.data.authenticated.token}}
-    {{else}}
-        {{#link-to "login"}}
-            Login
-        {{/link-to}}
-    {{/if}}
+  {{#if session.isAuthenticated}}
+    <button {{action "logout"}}>Logout</button>
+    {{session.data.authenticated.token}}
+  {{else}}
+    {{#link-to "login"}}
+      Login
+    {{/link-to}}
+  {{/if}}
 </nav>

@@ -1,11 +1,12 @@
 import DS from 'ember-data';
+import ENV from '../config/environment';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default DS.RESTAdapter.extend({
     session: service(), 
-    host: 'http://localhost:8000',
-    namespace: 'api',
+    host: ENV.API_HOSTNAME,
+    namespace: ENV.API_NAMESPACE,
     headers: computed('session.data.authenticated.token', function () {
         const headers = {};
         if (this.session.isAuthenticated) {

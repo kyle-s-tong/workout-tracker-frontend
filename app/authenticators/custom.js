@@ -1,11 +1,14 @@
 import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
 import fetch from 'fetch';
-import config from '../config/environment';
+import ENV from '../config/environment';
 import RSVP from 'rsvp';
 
 export default BaseAuthenticator.extend({
   restore(data) {
     return new RSVP.Promise(function(resolve, reject) {
+      if (!data.token) {
+        return reject();
+      }
       return resolve(data);
     });
   },
@@ -28,7 +31,7 @@ export default BaseAuthenticator.extend({
         method: 'POST'
       };
 
-      return fetch(`http://localhost:8000/api/security/login`, options).then(function(response){
+      return fetch(`${ENV.API_HOST}/${ENV.API_NAMESPACE}/security/login`, options).then(function(response){
         return response.json();
       }).then(data => { 
           return resolve(data);
@@ -39,7 +42,9 @@ export default BaseAuthenticator.extend({
     });
   },
 
-  invalidate(data) {
-    return RSVP.Promise.resolve();
-  }
+  // invalidate(data) {
+  //   //@TODO: Create invalidation endpoint on server side to explicit expire a session token and put logic here.
+  //   let token = data.token;
+  //   return RSVP.Promise.resolve();
+  // }
 });
