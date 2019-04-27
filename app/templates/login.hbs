@@ -1,19 +1,53 @@
-<h1>Log in</h1>
+<div
+  class="flex-1 flex flex-col items-center justify-center"
+>
+  <div class="flex h-64 -mt-4 items-center justify-center text-primary">
+    <h1>
+      Log into your account
+    </h1>
+  </div>
 
-<form {{action "authenticate" on="submit"}}>
-  <label for="identification">
-    Log in
-  </label>
-  {{input value=identification placeholder="Enter login" class="form-control"}}
+  <div
+    class="flex-auto flex flex-col w-5/6"
+  >
+    <form
+      {{action "authenticate" on="submit"}}
+      class="flex flex-col items-center w-full shadow border rounded border-gray-light bg-white"
+    >
+      <div
+        class="flex flex-col items-center p-2 pb-8 pt-8 w-5/6"
+      >
+        <label
+          for="identification"
+          class="flex-1 m-2 text-primary font-semibold"
+        >
+          Email
+        </label>
 
-  <label>
-    Password
-  </label>
-  {{input value=password placeholder="Enter password" type="password"}}
+        {{input
+          value=identification
+          class="flex-1 m-2 text-primary p-2 bg-primary-light rounded shadow-inner"
+        }}
 
-  <button type="submit">Log in</button>
-</form>
+        <label
+          class="flex-1 m-2 text-primary font-semibold"
+        >
+          Password
+        </label>
 
-{{#if errorMessage}}
-  {{errorMessage}}
-{{/if}}
+        {{input
+          class="flex-1 m-2 text-primary p-2 rounded bg-primary-light shadow-inner"
+          value=password
+          type="password"
+        }}
+
+        <button
+          type="submit"
+          class="flex-1 border-2 rounded p-1 pl-3 pr-3 m-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

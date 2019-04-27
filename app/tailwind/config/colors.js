@@ -17,6 +17,11 @@
 export default {
   'transparent': 'transparent',
 
+  'primary': '#BC4B51',
+  'primary-light': '#f1dadb',
+  'highlight': '',
+  'secondary': '',
+
   'black': '#22292f',
   'grey-darkest': '#3d4852',
   'grey-darker': '#606f7b',
