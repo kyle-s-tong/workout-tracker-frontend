@@ -6,8 +6,7 @@ export default Controller.extend({
     session: inject(),
     actions: {
       login() {
-        let { email, password } =
-        this.getProperties('email', 'password');
+        let { email, password } = this.getProperties('email', 'password');
 
         get(this, 'session').authenticate('authenticator:custom', email, password)
           .catch((reason) => {
