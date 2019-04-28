@@ -1,7 +1,7 @@
 <div
   class="flex-1 flex flex-col items-center justify-center"
 >
-  <div class="flex h-64 -mt-4 items-center justify-center text-primary">
+  <div class="flex h-64 items-center justify-center text-primary">
     <h1>
       Log into your account
     </h1>
@@ -11,21 +11,21 @@
     class="flex-auto flex flex-col w-5/6"
   >
     <form
-      {{action "authenticate" on="submit"}}
+      {{action "login" on="submit"}}
       class="flex flex-col items-center w-full shadow border rounded border-gray-light bg-white"
     >
       <div
         class="flex flex-col items-center p-2 pb-8 pt-8 w-5/6"
       >
         <label
-          for="identification"
+          for="email"
           class="flex-1 m-2 text-primary font-semibold"
         >
           Email
         </label>
 
         {{input
-          value=identification
+          value=email
           class="flex-1 m-2 text-primary p-2 bg-primary-light rounded shadow-inner"
         }}
 

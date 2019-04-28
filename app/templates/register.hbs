@@ -1,1 +1,77 @@
-{{outlet}}
+<div
+  class="flex-1 flex flex-col items-center justify-center"
+>
+  <div class="flex h-32 mt-4 mb-4 items-center justify-center text-primary">
+    <h1>
+      Sign up for an account
+    </h1>
+  </div>
+
+  <div
+    class="flex-auto flex flex-col w-5/6"
+  >
+    <form
+      {{action "register" on="submit"}}
+      class="flex flex-col items-center w-full shadow border rounded border-gray-light bg-white"
+    >
+      <div
+        class="flex flex-col items-center p-2 pb-8 pt-8 w-5/6"
+      >
+        <label
+          for="firstName"
+          class="flex-1 m-2 text-primary font-semibold"
+        >
+          First name
+        </label>
+
+        {{input
+          value=firstName
+          class="flex-1 m-2 text-primary p-2 bg-primary-light rounded shadow-inner"
+        }}
+
+        <label
+          for="lastName"
+          class="flex-1 m-2 text-primary font-semibold"
+        >
+          Last name
+        </label>
+
+        {{input
+          value=lastName
+          class="flex-1 m-2 text-primary p-2 bg-primary-light rounded shadow-inner"
+        }}
+
+        <label
+          for="email"
+          class="flex-1 m-2 text-primary font-semibold"
+        >
+          Email
+        </label>
+
+        {{input
+          value=email
+          class="flex-1 m-2 text-primary p-2 bg-primary-light rounded shadow-inner"
+        }}
+
+        <label
+          class="flex-1 m-2 text-primary font-semibold"
+        >
+          Password
+        </label>
+
+        {{input
+          class="flex-1 m-2 text-primary p-2 rounded bg-primary-light shadow-inner"
+          value=password
+          type="password"
+        }}
+
+        <button
+          type="submit"
+          class="flex-1 border-2 rounded p-1 pl-3 pr-3 m-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
+        >
+          Sign up
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

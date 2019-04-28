@@ -1,10 +1,13 @@
-<nav>
+<nav class="z-50">
   {{#if session.isAuthenticated}}
     <button {{action "logout"}}>Logout</button>
     {{session.data.authenticated.token}}
   {{else}}
     {{#link-to "login"}}
       Login
+    {{/link-to}}
+    {{#link-to "register"}}
+      Sign up
     {{/link-to}}
   {{/if}}
 </nav>

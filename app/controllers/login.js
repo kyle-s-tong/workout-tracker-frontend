@@ -4,16 +4,15 @@ import { get, set } from '@ember/object';
 
 export default Controller.extend({
     session: inject(),
-
     actions: {
-      authenticate() {
-        let { identification, password } =
-        this.getProperties('identification', 'password');
+      login() {
+        let { email, password } =
+        this.getProperties('email', 'password');
 
-        get(this, 'session').authenticate('authenticator:custom',
-        identification, password).catch((reason) => {
-          set(this, 'errorMessage', reason.error);
-        });
+        get(this, 'session').authenticate('authenticator:custom', email, password)
+          .catch((reason) => {
+            set(this, 'errorMessage', reason.error);
+          });
       }
     }
 });

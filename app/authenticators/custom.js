@@ -15,6 +15,7 @@ export default BaseAuthenticator.extend({
 
   authenticate(identification, password) {
     return new RSVP.Promise(function(resolve, reject) {
+      console.log('entry')
       const headers = {
         'Content-Type' : 'application/json',
       };
@@ -31,11 +32,11 @@ export default BaseAuthenticator.extend({
         method: 'POST'
       };
 
-      return fetch(`${ENV.API_HOST}/${ENV.API_NAMESPACE}/security/login`, options).then(function(response){
+      return fetch(`${ENV.API_HOST}/${ENV.API_NAMESPACE}/users/login`, options).then(function(response){
         return response.json();
-      }).then(data => { 
+      }).then(data => {
           return resolve(data);
-          
+
       }).catch(function(reason) {
         return reject(reason);
       });
