@@ -15,7 +15,6 @@ export default BaseAuthenticator.extend({
 
   authenticate(identification, password) {
     return new RSVP.Promise(function(resolve, reject) {
-      console.log('entry')
       const headers = {
         'Content-Type' : 'application/json',
       };

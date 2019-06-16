@@ -4,4 +4,5 @@ const { Model, attr, hasMany } = DS;
 export default Model.extend({
   title: attr('string'),
   exercises: hasMany('exercise')
+
 });

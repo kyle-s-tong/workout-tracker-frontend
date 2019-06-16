@@ -35,4 +35,6 @@ export default function() {
   });
 
   this.get('/workouts');
+
+  this.get('/routines');
 }

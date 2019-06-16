@@ -17,7 +17,6 @@ module.exports = function(environment) {
       }
     },
     API_HOSTNAME: process.env.API_HOST,
-    API_NAMESPACE: process.env.API_NAMESPACE,
 
     APP: {
       // Here you can pass flags/options to your application instance

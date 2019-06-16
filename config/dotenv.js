@@ -1,8 +1,8 @@
 module.exports = function(env) {
     return {
-      clientAllowedKeys: ['API_HOST','API_NAMESPACE'],
+      clientAllowedKeys: ['API_HOST'],
       // Fail build when there is missing any of clientAllowedKeys environment variables.
       // By default false.
-      failOnMissingKey: false, 
+      failOnMissingKey: false,
     };
   };
