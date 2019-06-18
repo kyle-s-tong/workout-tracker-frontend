@@ -48,7 +48,6 @@
     "ember-source": "~3.9.0",
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^5.2.0",
-    "faker": "^4.1.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0"
   },

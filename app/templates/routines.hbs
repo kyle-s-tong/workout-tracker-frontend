@@ -1,0 +1,17 @@
+<div
+  class="flex-1 flex flex-col items-center justify-center"
+>
+  {{title-section title="Routines"}}
+
+  {{#if this.model}}
+    <section>
+      {{#each this.model as |routine|}}
+        <div>
+          <div>{{routine-tile routine=routine}}</div>
+        </div>
+      {{/each}}
+    </section>
+  {{else}}
+
+  {{/if}}
+</div>
