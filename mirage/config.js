@@ -39,5 +39,13 @@ export default function() {
 
   this.get('/workouts');
 
-  this.get('/routines');
+  this.get('/routines', (schema, request) => {
+    const user = request.queryParams.userId;
+
+    if (user) {
+      return schema.routines.where({ userId: user })
+    }
+
+    return schema.routines.all();
+  });
 }

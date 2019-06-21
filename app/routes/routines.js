@@ -6,6 +6,8 @@ export default Route.extend({
 
   model: function() {
     let userId = this.get('currentUser.user.id');
-    return this.store.query('routine', { userId: userId });
+    return this.store.query('routine', {
+      userId: userId
+    });
   }
 });
