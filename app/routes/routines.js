@@ -1,7 +1,11 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  currentUser: service(),
+
   model: function() {
-    return this.store.findAll('routine');
+    let userId = this.get('currentUser.user.id');
+    return this.store.query('routine', { userId: userId });
   }
 });
