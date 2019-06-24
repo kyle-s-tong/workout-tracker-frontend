@@ -1,7 +1,8 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend({
+export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
 
   _loadCurrentUser() {
@@ -9,6 +10,7 @@ export default Route.extend({
   },
 
   beforeModel() {
+    this._super(...arguments);
     return this._loadCurrentUser();
   },
 

@@ -8,6 +8,7 @@ export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
 
   beforeModel() {
+    this.replaceWith('routines');
     return this._loadCurrentUser();
   },
 

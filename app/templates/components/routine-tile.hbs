@@ -4,6 +4,8 @@
   <div
     class="flex flex-col items-center w-full shadow border rounded border-gray-light bg-white"
   >
-    {{routine.title}}
+    {{#link-to "routine" routine.id}}
+      {{routine.title}}
+    {{/link-to}}
   </div>
 </div>
