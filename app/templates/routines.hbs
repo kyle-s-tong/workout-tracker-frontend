@@ -1,14 +1,14 @@
 <div
-  class="flex-1 flex flex-col items-center justify-center"
+  class="flex-auto h-full flex flex-col flex-grow items-center"
 >
   {{title-section title="Routines"}}
 
   {{#if this.model}}
-    <section>
+    <section
+      class="flex-grow flex flex-col items-center h-full w-full content-around"
+    >
       {{#each this.model as |routine|}}
-        <div>
-          <div>{{routine-tile routine=routine}}</div>
-        </div>
+        {{routine-tile routine=routine class="w-full flex flex-col items-center"}}
       {{/each}}
     </section>
   {{else}}
