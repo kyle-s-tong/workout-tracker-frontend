@@ -10,6 +10,9 @@
       {{#each this.model as |routine|}}
         {{content-tile content=routine linkRoute="routine" class="w-full flex flex-col items-center"}}
       {{/each}}
+      {{#if placeholdersNeeded}}
+        {{content-tile isPlaceholder=true class="w-full flex flex-col items-center"}}
+      {{/if}}
     </section>
   {{else}}
 
