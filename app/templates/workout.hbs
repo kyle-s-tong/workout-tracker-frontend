@@ -1,3 +1,20 @@
-  <div>
-    <div>{{this.model.title}}</div>
-  </div>
+<div
+  class="flex-auto h-full flex flex-col flex-grow items-center"
+>
+  {{title-section title=this.model.title}}
+
+  {{#if this.model.exercises}}
+    <section
+      class="flex-grow flex flex-col items-center h-full w-full content-around"
+    >
+      {{#each this.model.exercises as |exercise|}}
+        {{content-tile content=exercise linkRoute="exercise" class="w-full flex flex-col items-center"}}
+      {{/each}}
+      {{#if placeholdersNeeded}}
+        {{content-tile isPlaceholder=true class="w-full flex flex-col items-center"}}
+      {{/if}}
+    </section>
+  {{else}}
+
+  {{/if}}
+</div>

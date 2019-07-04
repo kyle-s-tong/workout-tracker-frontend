@@ -50,4 +50,7 @@ export default function() {
     return schema.routines.all();
   });
   this.get('/routines/:id');
+
+  this.get('/exercises');
+  this.get('/exercises/:id');
 }
