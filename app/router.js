@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('register');
   this.route('routines');
   this.route('routine', { path: 'routines/:routine_id'});
+  this.route('workout');
 });
 
 export default Router;
