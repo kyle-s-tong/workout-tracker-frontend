@@ -1,0 +1,8 @@
+<div>
+  {{#form-for model as |f|}}
+    {{f.text-field "title"}}
+    {{f.checkbox-field "isActive"}}
+
+    {{f.submit "Save"}}
+  {{/form-for}}
+</div>

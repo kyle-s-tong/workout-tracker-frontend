@@ -1,13 +1,10 @@
 {{#if isPlaceholder}}
 
-
-  <div
-    class="flex h-32 flex-col w-4/5"
-  >
-    <div class="text-center flex h-full text-grey shadow border rounded border-gray-light bg-white m-1 justify-center items-center opacity-50">
-      {{fa-icon "plus" size="4x"}}
-    </div>
-  </div>
+  {{#link-to linkRouteCreate class="flex h-32 flex-col w-4/5"}}
+      <div class="text-center flex h-full text-grey shadow border rounded border-gray-light bg-white m-1 justify-center items-center opacity-50">
+        {{fa-icon "plus" size="4x"}}
+      </div>
+  {{/link-to}}
 
 
 {{else}}

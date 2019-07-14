@@ -10,8 +10,10 @@ Router.map(function() {
   this.route('workouts');
   this.route('login');
   this.route('register');
-  this.route('routines');
-  this.route('routine', { path: 'routines/:routine_id'});
+  this.route('routines', function() {
+    this.route('create');
+  });
+  this.route('routine', { path: 'routines/:routine_id'}, function() {});
   this.route('workout', { path: 'workouts/:workout_id'});
   this.route('exercise', { path: 'exercises/:exercise_id'});
 });
