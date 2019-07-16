@@ -3,6 +3,6 @@
     {{f.text-field "title"}}
     {{f.checkbox-field "isActive"}}
 
-    {{f.submit "Save"}}
+    {{f.submit action=(action "save" model)}}
   {{/form-for}}
 </div>
