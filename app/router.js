@@ -7,15 +7,19 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('workouts');
   this.route('login');
   this.route('register');
+
   this.route('routines', function() {
     this.route('create');
   });
-  this.route('routine', { path: 'routines/:routine_id'}, function() {});
-  this.route('workout', { path: 'workouts/:workout_id'});
+  this.route('routine', { path: 'routines/:routine_id'}, function() {
+    this.route('workout', { path: 'workouts/:workout_id'});
+    this.route('workout-add', { path: 'workouts/add' })
+  });
+
   this.route('exercise', { path: 'exercises/:exercise_id'});
+  this.route('workout-add');
 });
 
 export default Router;

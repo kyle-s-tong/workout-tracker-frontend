@@ -55,4 +55,5 @@ export default function() {
 
   this.get('/exercises');
   this.get('/exercises/:id');
+
 }

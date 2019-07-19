@@ -1,29 +1,15 @@
-{{#if isPlaceholder}}
-
-  {{#link-to linkRouteCreate class="flex h-32 flex-col w-4/5"}}
-      <div class="text-center flex h-full text-grey shadow border rounded border-gray-light bg-white m-1 justify-center items-center opacity-50">
-        {{fa-icon "plus" size="4x"}}
-      </div>
-  {{/link-to}}
-
-
-{{else}}
-
-  {{#link-to linkRoute content class="flex h-32 flex-col w-4/5"}}
-    <div
-      class="h-full flex flex-col shadow border rounded border-gray-light bg-white p-1 m-1 justify-between"
-    >
-      <div class="text-center">
-        {{content.title}}
-      </div>
-
-      <div
-        class=""
-      >
-        Last activity: 21st June 2019
-      </div>
+{{#link-to linkRoute content class="flex h-32 flex-col w-4/5"}}
+  <div
+    class="h-full flex flex-col shadow border rounded border-gray-light bg-white p-1 m-1 justify-between"
+  >
+    <div class="text-center">
+      {{content.title}}
     </div>
-  {{/link-to}}
 
-
-{{/if}}
+    <div
+      class=""
+    >
+      Last activity: 21st June 2019
+    </div>
+  </div>
+{{/link-to}}
