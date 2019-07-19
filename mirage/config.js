@@ -41,6 +41,7 @@ export default function() {
   this.get('/workouts/:id');
 
   this.post('/routines');
+
   this.get('/routines', (schema, request) => {
     const user = request.queryParams.userId;
 

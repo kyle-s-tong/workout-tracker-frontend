@@ -7,15 +7,21 @@ export default Service.extend({
   store: service(),
 
   load() {
-    if (this.get('session.isAuthenticated')) {
-      const userId = this.session.data.authenticated.userId;
+      const userId = this.getUserId();
       if (userId) {
         return this.store.findRecord('user', userId).then((user) => {
           this.set('user', user);
         });
-      }
-    } else {
+      } else {
       return RSVP.resolve();
+      }
+  },
+
+  getUserId() {
+    if (this.get('session.isAuthenticated')) {
+      return this.session.data.authenticated.userId;
     }
+
+    return null;
   }
 });
