@@ -8,10 +8,10 @@
       class="flex-grow flex flex-col items-center h-full w-full content-around"
     >
       {{#each this.model.workouts as |workout|}}
-        {{content-tile content=workout linkRoute="routine.workout" class="w-full flex flex-col items-center"}}
+        {{content-tile content=workout linkRoute="routines.routine.workout" class="w-full flex flex-col items-center"}}
       {{/each}}
       {{#if placeholdersNeeded}}
-        {{content-tile-add linkRoute="routine.workout-add" class="w-full flex flex-col items-center"}}
+        {{content-tile-add linkRoute="routines.routine.workout-add" class="w-full flex flex-col items-center"}}
       {{/if}}
     </section>
   {{else}}

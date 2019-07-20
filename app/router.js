@@ -10,12 +10,12 @@ Router.map(function() {
   this.route('login');
   this.route('register');
 
-  this.route('routines', function() {
+  this.route('routines', { path: 'routines'}, function() {
+    this.route('routine', { path: ':id'}, function() {
+      this.route('workout', { path: 'workouts/:workout_id'});
+      this.route('workout-add', { path: 'workouts/add' })
+    })
     this.route('create');
-  });
-  this.route('routine', { path: 'routines/:routine_id'}, function() {
-    this.route('workout', { path: 'workouts/:workout_id'});
-    this.route('workout-add', { path: 'workouts/add' })
   });
 
   this.route('exercise', { path: 'exercises/:exercise_id'});
