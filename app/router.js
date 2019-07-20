@@ -11,15 +11,15 @@ Router.map(function() {
   this.route('register');
 
   this.route('routines', { path: 'routines'}, function() {
-    this.route('routine', { path: ':id'}, function() {
+    this.route('routine', { path: ':routine_id'}, function() {
       this.route('workout', { path: 'workouts/:workout_id'});
       this.route('workout-add', { path: 'workouts/add' })
     })
     this.route('create');
   });
 
+
   this.route('exercise', { path: 'exercises/:exercise_id'});
-  this.route('workout-add');
 });
 
 export default Router;
