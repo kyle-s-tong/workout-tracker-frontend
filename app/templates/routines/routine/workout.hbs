@@ -8,7 +8,7 @@
       class="flex-grow flex flex-col items-center h-full w-full content-around"
     >
       {{#each this.model.exercises as |exercise|}}
-        {{content-tile content=exercise linkRoute="exercises.exercise" class="w-full flex flex-col items-center"}}
+        {{content-tile content=exercise linkRoute="exercises.exercise-summary" class="w-full flex flex-col items-center"}}
       {{/each}}
       {{#if placeholdersNeeded}}
         {{content-tile-add linkRoute="exercises.exercise-add" class="w-full flex flex-col items-center"}}
@@ -18,3 +18,5 @@
     {{content-tile-add linkRoute="exercises.exercise-add" class="w-full flex flex-col items-center"}}
   {{/if}}
 </div>
+
+{{footer-start-workout class="fixed h-16 w-full bottom"}}

@@ -1,4 +1,4 @@
-<nav class="z-50">
+<nav class="z-50 h-8">
   {{#if session.isAuthenticated}}
     <button {{action "logout"}}>Logout</button>
     {{session.data.authenticated.token}}
