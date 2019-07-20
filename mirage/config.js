@@ -36,11 +36,22 @@ export default function() {
 
   this.get('/users');
   this.get('/users/:id');
+  this.patch('/users/:id');
 
   this.get('/workouts');
+  this.post('/workouts');
   this.get('/workouts/:id');
 
-  this.post('/routines');
+  this.post('/routines', function(schema, request) {
+    let attrs = this.normalizedRequestAttrs();
+
+
+    if (attrs.isActive && attrs.isActive === true) {
+      schema.routines.where({ isActive: true }).update({ isActive: false })
+    }
+
+    return schema.routines.create(attrs);
+  });
 
   this.get('/routines', (schema, request) => {
     const user = request.queryParams.userId;

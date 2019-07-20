@@ -18,7 +18,6 @@ Router.map(function() {
     this.route('create');
   });
 
-
   this.route('exercise', { path: 'exercises/:exercise_id'});
 });
 

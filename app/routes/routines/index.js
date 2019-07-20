@@ -15,7 +15,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   model() {
-    let userId = this.get('currentUser.user.id');
+    let userId = this.currentUser.getUserId();
     return this.store.query('routine', {
       userId: userId
     });

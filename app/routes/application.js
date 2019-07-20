@@ -8,6 +8,7 @@ export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
 
   beforeModel() {
+    console.log(this.currentUser.getActiveRoutine());
     return this._loadCurrentUser();
   },
 

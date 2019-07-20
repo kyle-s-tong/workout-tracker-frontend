@@ -6,5 +6,6 @@ export default Model.extend({
   lastName: attr('string'),
   email: attr('string'),
   password: attr('string'),
+  activeRoutine: attr('number'),
   routines: hasMany('routines')
 });

@@ -7,14 +7,12 @@ export default Service.extend({
   store: service(),
 
   load() {
-      const userId = this.getUserId();
-      if (userId) {
-        return this.store.findRecord('user', userId).then((user) => {
-          this.set('user', user);
-        });
-      } else {
+    const userId = this.getUserId();
+    if (userId) {
+      return this.store.findRecord('user', userId);
+    } else {
       return RSVP.resolve();
-      }
+    }
   },
 
   getUserId() {
@@ -23,5 +21,16 @@ export default Service.extend({
     }
 
     return null;
+  },
+
+  getActiveRoutine() {
+    const userId = this.getUserId();
+
+    if (userId) {
+      this.store.findRecord('user', userId)
+        .then(user => {
+          return user.activeRoutine;
+        })
+    }
   }
 });

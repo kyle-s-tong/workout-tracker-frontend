@@ -9,10 +9,9 @@ export default Controller.extend({
       this.store.findRecord('user', this.currentUser.getUserId())
         .then((user) => {
           model.set('user', user);
-          model.set('isActive', true);
           model.save()
-            .then((routine) => {
-              this.transitionToRoute('routines.routine', routine.id)
+            .then((workout) => {
+              this.transitionToRoute('routines.routine.workout', workout.id)
             })
         })
     }
