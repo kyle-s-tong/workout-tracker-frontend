@@ -27,10 +27,8 @@ export default Service.extend({
     const userId = this.getUserId();
 
     if (userId) {
-      this.store.findRecord('user', userId)
-        .then(user => {
-          return user.activeRoutine;
-        })
+      const user = this.store.peekRecord('user', userId);
+      return user.activeRoutine;
     }
   }
 });

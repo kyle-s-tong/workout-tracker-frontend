@@ -7,5 +7,8 @@ export default Model.extend({
   email: attr('string'),
   password: attr('string'),
   activeRoutine: attr('number'),
-  routines: hasMany('routines')
+  willChangeRoutine: attr('boolean'),
+
+  routines: hasMany('routines'),
+  workouts: hasMany('workouts')
 });

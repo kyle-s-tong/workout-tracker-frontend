@@ -8,8 +8,7 @@ export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
 
   beforeModel() {
-    console.log(this.currentUser.getActiveRoutine());
-    return this._loadCurrentUser();
+    this.loadCurrentUser()
   },
 
   sessionAuthenticated() {
@@ -17,7 +16,7 @@ export default Route.extend(ApplicationRouteMixin, {
     this._loadCurrentUser();
   },
 
-  _loadCurrentUser() {
+  loadCurrentUser() {
     return this.currentUser.load().catch(() => this.session.invalidate());
   }
 });

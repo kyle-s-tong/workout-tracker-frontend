@@ -5,13 +5,18 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
 
-  _loadCurrentUser() {
+  loadCurrentUser() {
     return this.currentUser.load().catch(() => this.session.invalidate());
   },
 
   beforeModel() {
     this._super(...arguments);
-    return this._loadCurrentUser();
+    this.loadCurrentUser()
+      .then(user => {
+        if (user.activeRoutine && !user.willChangeRoutine) {
+          this.transitionTo('routines.routine', user.activeRoutine);
+        }
+      });
   },
 
   model() {
