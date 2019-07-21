@@ -8,6 +8,7 @@
       class="flex-grow flex flex-col items-center h-full w-full content-around"
     >
       {{#each this.model.exercises as |exercise|}}
+        {{log exercise}}
         {{content-tile content=exercise linkRoute="exercises.exercise-summary" class="w-full flex flex-col items-center"}}
       {{/each}}
       {{#if placeholdersNeeded}}

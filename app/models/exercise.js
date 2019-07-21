@@ -1,9 +1,12 @@
 import DS from 'ember-data';
-const { Model, attr, hasMany } = DS;
+const { Model, attr, hasMany, belongsTo } = DS;
 
 export default Model.extend({
-  title: attr('string'),
-  description: attr('string'),
+  sets: attr('number'),
+  reps: attr('number'),
+  rest: attr('number'),
+  isSuperset: attr('boolean'),
+  exerciseSummary: belongsTo('exercise-summary'),
   workouts: hasMany('workout'),
   routines: hasMany('routine')
 });
