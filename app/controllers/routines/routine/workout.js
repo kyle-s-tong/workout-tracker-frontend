@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
   maxExercises: 50,
+  buttonText: "Start workout",
 
   placeholdersNeeded: computed('model', function() {
     if (this.model && this.model.exercises.length < this.maxExercises) {
