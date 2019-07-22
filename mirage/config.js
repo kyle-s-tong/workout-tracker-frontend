@@ -42,7 +42,10 @@ export default function() {
   this.post('/workouts');
   this.get('/workouts/:id');
 
-  this.post('/routines', function(schema, request) {
+  this.get('/exercise-summaries');
+  this.get('/exercise-summaries/:id');
+
+  this.post('/routines', function(schema) {
     let attrs = this.normalizedRequestAttrs();
 
 

@@ -6,5 +6,4 @@ export default Model.extend({
   isActive: attr('boolean'),
   workouts: hasMany('workout'),
   user: belongsTo('user')
-
 });

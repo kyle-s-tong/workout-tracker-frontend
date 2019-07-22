@@ -3,6 +3,6 @@ const { Model, attr, hasMany } = DS;
 
 export default Model.extend({
   title: attr('string'),
-  descriptions: attr('string'),
+  description: attr('string'),
   exercises: hasMany('exercise')
 });

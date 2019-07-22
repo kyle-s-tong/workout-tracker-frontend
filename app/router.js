@@ -19,7 +19,7 @@ Router.map(function() {
   });
 
   this.route('exercises', function() {
-    this.route('exercise-summary', { path: ':exercise_id' });
+    this.route('exercise-summary', { path: ':exercise_summary_id' });
     this.route('exercise-add', { path: 'add' });
   });
 });

@@ -7,6 +7,5 @@ export default Model.extend({
   rest: attr('number'),
   isSuperset: attr('boolean'),
   exerciseSummary: belongsTo('exercise-summary'),
-  workouts: hasMany('workout'),
-  routines: hasMany('routine')
+  workouts: hasMany('workout')
 });
