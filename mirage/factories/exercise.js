@@ -1,19 +1,19 @@
 import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  sets(i) {
+  sets() {
     return 3;
   },
 
-  reps(i) {
+  reps() {
     return 10;
   },
 
-  rest(i) {
+  rest() {
     return 60;
   },
 
-  isSuperset(i) {
+  isSuperset() {
     return false;
   },
 });

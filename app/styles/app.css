@@ -12,3 +12,7 @@ body > .ember-view {
 .bottom {
   bottom: 0;
 }
+
+.no-link {
+  text-decoration: none !important;
+}

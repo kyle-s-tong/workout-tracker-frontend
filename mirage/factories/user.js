@@ -13,7 +13,7 @@ export default Factory.extend({
     return `hi${i + 1}@gmail.com`
   },
 
-  activeRoutine(i) {
+  activeRoutine() {
     return 3
   },
 });
