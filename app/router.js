@@ -12,7 +12,9 @@ Router.map(function() {
 
   this.route('routines', function() {
     this.route('routine', { path: ':routine_id' }, function() {
-      this.route('workout', { path: 'workouts/:workout_id' });
+      this.route('workout', { path: 'workouts/:workout_id' }, function() {
+        this.route('workout-in-progress', { path: '/record-workout/:record_id' });
+      });
       this.route('workout-add', { path: 'workouts/add' })
     })
     this.route('routine-add', { path: 'add' });
@@ -23,7 +25,6 @@ Router.map(function() {
     this.route('exercise-add', { path: 'add' });
   });
 
-  this.route('workout-in-progress', { path: 'workouts/:current_workout_id/record' });
 });
 
 export default Router;

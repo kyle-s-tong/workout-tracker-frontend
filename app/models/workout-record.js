@@ -1,6 +1,8 @@
 import DS from 'ember-data';
-const { Model } = DS;
+const { Model, attr, hasMany } = DS;
 
 export default Model.extend({
+  dateCreated: attr(),
 
+  exerciseRecords: hasMany('exercise-record')
 });

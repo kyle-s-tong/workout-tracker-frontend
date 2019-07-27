@@ -19,6 +19,7 @@ export default {
 
   'primary': '#BC4B51',
   'primary-light': '#f1dadb',
+  'primary-dark': '#963c40',
   'highlight': '',
   'secondary': '',
 

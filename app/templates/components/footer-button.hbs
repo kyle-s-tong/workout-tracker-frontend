@@ -1,3 +1,7 @@
 {{#if hasOneButton}}
-  <button class="h-full w-full text-white bg-primary hover:text-white font-semibold">{{buttonText}}</button>
+  <button class="h-full w-full text-white bg-primary hover:text-white font-semibold hover:bg-primary-dark">{{buttonText}}</button>
+{{else}}
+  {{#each buttonDetails as |buttonDetail index|}}
+    {{index}}
+  {{/each}}
 {{/if}}
