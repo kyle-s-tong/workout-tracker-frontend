@@ -1,0 +1,20 @@
+{{#link-to linkRoute summary class="flex h-32 flex-col w-4/5 no-link text-primary"}}
+  <div
+    class="h-full flex flex-col shadow border rounded border-gray-light bg-white p-1 m-1 justify-between"
+  >
+    <div class="text-center text-xl">
+      {{summary.title}}
+    </div>
+
+    {{#if exercise}}
+    <div class="flex flex-col self-end text-xs">
+      <p>{{exercise.sets}} sets of {{exercise.reps}} reps</p>
+      <p>{{exercise.rest}} seconds rest</p>
+    </div>
+    {{/if}}
+
+    <div class="text-xs italic">
+      Last activity: 21st June 2019
+    </div>
+  </div>
+{{/link-to}}

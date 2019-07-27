@@ -22,6 +22,8 @@ Router.map(function() {
     this.route('exercise-summary', { path: ':exercise_summary_id' });
     this.route('exercise-add', { path: 'add' });
   });
+
+  this.route('workout-in-progress', { path: 'workouts/:current_workout_id/record' });
 });
 
 export default Router;
