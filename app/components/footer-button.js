@@ -4,9 +4,5 @@ import { computed } from '@ember/object';
 export default Component.extend({
   hasOneButton: computed('buttonNumber', function() {
     return this.buttonNumber === 1;
-  }),
-
-  buttonDetails: function() {
-
-  }
+  })
 });

@@ -7,7 +7,9 @@ export default Route.extend({
         workout: this.store.findRecord('workout', params.current_workout_id)
       }
     )
-    record.save();
-    return record;
+    record.save()
+      .then(record => {
+        return record;
+      })
   }
 });

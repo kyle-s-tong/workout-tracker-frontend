@@ -1,3 +1,11 @@
-{{this.model.workout.title}}
+{{#swiper-container}}
+  {{#each this.model.workout.exercises as |exercise|}}
+    {{#swiper-slide}}{{exercise.reps}}{{/swiper-slide}}
+  {{/each}}
+{{/swiper-container}}
 
-{{footer-button buttonNumber=2 class="fixed h-16 w-full bottom"}}
+
+<div class="flex flex-row w-full h-16 fixed bottom">
+  {{footer-button buttonNumber=1 buttonText="Cancel" click=(action "cancel") class="w-1/2 flex-grow"}}
+  {{footer-button buttonNumber=1 buttonText="Finish workout" click=(action "finishWorkout") class="w-1/2 flex-grow"}}
+</div>
