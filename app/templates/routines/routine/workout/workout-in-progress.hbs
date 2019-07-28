@@ -1,6 +1,10 @@
-{{#swiper-container}}
+{{#swiper-container class="w-full"}}
   {{#each this.model.workout.exercises as |exercise|}}
-    {{#swiper-slide}}{{exercise.reps}}{{/swiper-slide}}
+    {{#swiper-slide}}
+      <div class="w-full">
+        {{exercise.reps}}
+      </div>
+    {{/swiper-slide}}
   {{/each}}
 {{/swiper-container}}
 
