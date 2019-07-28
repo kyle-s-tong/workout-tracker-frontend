@@ -1,7 +1,14 @@
-{{#swiper-container class="w-full"}}
+
+<div class="flex flex-row w-full h-8 z-10">
+  {{footer-button buttonNumber=1 buttonText="Cancel" click=(action "cancel") class="w-1/2 flex-grow"}}
+  {{footer-button buttonNumber=1 buttonText="Finish workout" click=(action "finishWorkout") class="w-1/2 flex-grow"}}
+</div>
+
+{{#swiper-container class="flex flex-auto w-full h-full"}}
   {{#each this.model.workout.exercises as |exercise|}}
     {{#swiper-slide}}
-      <div class="w-full">
+      <div class="w-full h-full">
+        {{title-section title=exercise.exerciseSummary.title}}
         {{exercise.reps}}
       </div>
     {{/swiper-slide}}
@@ -9,7 +16,7 @@
 {{/swiper-container}}
 
 
-<div class="flex flex-row w-full h-16 fixed bottom">
-  {{footer-button buttonNumber=1 buttonText="Cancel" click=(action "cancel") class="w-1/2 flex-grow"}}
-  {{footer-button buttonNumber=1 buttonText="Finish workout" click=(action "finishWorkout") class="w-1/2 flex-grow"}}
+<div class="flex flex-row w-full h-16 fixed bottom z-10">
+  {{footer-button buttonNumber=1 buttonText="Previous" class="w-1/2 flex-grow"}}
+  {{footer-button buttonNumber=1 buttonText="Next" class="w-1/2 flex-grow"}}
 </div>
