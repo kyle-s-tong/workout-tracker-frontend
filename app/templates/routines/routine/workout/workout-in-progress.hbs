@@ -5,11 +5,11 @@
 </div>
 
 {{#swiper-container class="flex flex-auto w-full h-full"}}
-  {{#each this.model.workout.exercises as |exercise|}}
+  {{#each this.exercisesWithSets as |exercise|}}
     {{#swiper-slide}}
       <div class="w-full h-full">
-        {{title-section title=exercise.exerciseSummary.title}}
-        {{exercise.reps}}
+        {{title-section title=exercise.title}}
+        {{exercise.sets.0.reps}}
       </div>
     {{/swiper-slide}}
   {{/each}}
