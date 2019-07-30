@@ -3,39 +3,42 @@ import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 
 export default Controller.extend({
-  exerciseWithSets: computed('model', function() {
-    return this.getExercisesWithSets();
-  }),
+  exercisesWithSets: null,
 
-  getExercisesWithSets: task(function * () {
-    const exercises = yield this.model.workout.exercises;
+  getExercisesWithSets: task(function * (model) {
+    const exercises = yield model.workout.exercises;
+    console.log(exercises.length);
 
     let exercisesWithSets = [];
 
     for (let i = 0; i < exercises.length; i++) {
       const summary = yield exercises[i].exerciseSummary;
+      console.log(summary);
 
       let exerciseWithSets = {
         title: summary.title,
         sets: []
       };
 
-      for (let i = 0; i < exercise.sets; i++) {
+      for (let i = 0; i < exercises[i].sets; i++) {
         exerciseWithSets.sets.push({
-          reps: exercise.reps,
+          reps: exercises[i].reps,
           weight: 0,
-          rest: exercise.rest
+          rest: exercises[i].rest
         })
 
       }
       exercisesWithSets.push(exerciseWithSets);
     }
 
-    console.log(exerciseWithSets);
-    return exercisesWithSets;
+    console.log(exercisesWithSets);
+    this.set('exercisesWithSets', exercisesWithSets)
   }),
 
   actions: {
+    enteredRoute(model) {
+      this.getExercisesWithSets.perform(model);
+    },
     cancel() {
 
     },
