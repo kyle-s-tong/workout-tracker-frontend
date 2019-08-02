@@ -1,6 +1,4 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
-import { task } from 'ember-concurrency';
 
 export default Controller.extend({
   exercisesWithSets: null,

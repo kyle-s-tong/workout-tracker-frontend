@@ -14,14 +14,8 @@ export default Controller.extend({
   }),
 
   actions: {
-    startWorkout(workout) {
-      const record = this.store.createRecord('workout-record', {
-        workout: workout
-      })
-      record.save()
-        .then(record => {
-          this.transitionToRoute('routines.routine.workout.workout-in-progress', record);
-        })
+    startWorkout() {
+      this.transitionToRoute('routines.routine.workout.workout-in-progress');
     }
   }
 });

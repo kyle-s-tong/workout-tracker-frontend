@@ -13,7 +13,7 @@ Router.map(function() {
   this.route('routines', function() {
     this.route('routine', { path: ':routine_id' }, function() {
       this.route('workout', { path: 'workouts/:workout_id' }, function() {
-        this.route('workout-in-progress', { path: '/record-workout/:record_id' });
+        this.route('workout-in-progress', { path: 'record-workout' });
       });
       this.route('workout-add', { path: 'workouts/add' })
     })
