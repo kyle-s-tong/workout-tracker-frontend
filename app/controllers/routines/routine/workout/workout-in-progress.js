@@ -7,15 +7,11 @@ export default Controller.extend({
 
   getExercisesWithSets: async function (model) {
     const exercises = model.workout.exercises;
-    console.log(exercises);
 
     let exercisesWithSets = [];
 
-    exercises.forEach(async (exercise) => {
-      console.log(exercise);
+    await Promise.all(exercises.map(async (exercise) => {
       const summary = await exercise.exerciseSummary;
-
-      console.log('summary', summary);
 
       let exerciseWithSets = {
         title: summary.title,
@@ -31,9 +27,8 @@ export default Controller.extend({
 
       }
       exercisesWithSets.push(exerciseWithSets);
-    })
+    }));
 
-    console.log(exercisesWithSets);
     this.set('exercisesWithSets', exercisesWithSets)
   },
 
@@ -46,6 +41,12 @@ export default Controller.extend({
     },
     finishWorkout() {
 
-    }
+    },
+    rest() {
+
+    },
+    next() {
+
+    },
   }
 });

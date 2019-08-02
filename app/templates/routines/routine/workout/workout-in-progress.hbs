@@ -5,19 +5,21 @@
 </div>
 
 {{#swiper-container class="flex flex-auto w-full h-full"}}
-{{log exercisesWithSets}}
   {{#each exercisesWithSets as |exercise|}}
     {{#swiper-slide}}
       <div class="w-full h-full">
         {{title-section title=exercise.title}}
-        {{exercise.sets.0.reps}}
+
+        {{set-group sets=exercise.sets}}
       </div>
     {{/swiper-slide}}
   {{/each}}
 {{/swiper-container}}
 
-
+<div class="flex flex-row w-full h-16 mb-16 z-10">
+  {{footer-button buttonNumber=1 buttonText="Rest" click=(action "rest") class="w-full flex-grow"}}
+</div>
 <div class="flex flex-row w-full h-16 fixed bottom z-10">
   {{footer-button buttonNumber=1 buttonText="Previous" class="w-1/2 flex-grow"}}
-  {{footer-button buttonNumber=1 buttonText="Next" class="w-1/2 flex-grow"}}
+  {{footer-button buttonNumber=1 buttonText="Next" click=(action "next") class="w-1/2 flex-grow"}}
 </div>
