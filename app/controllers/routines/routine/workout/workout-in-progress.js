@@ -5,39 +5,41 @@ import { task } from 'ember-concurrency';
 export default Controller.extend({
   exercisesWithSets: null,
 
-  getExercisesWithSets: task(function * (model) {
-    const exercises = yield model.workout.exercises;
-    console.log(exercises.length);
+  getExercisesWithSets: async function (model) {
+    const exercises = model.workout.exercises;
+    console.log(exercises);
 
     let exercisesWithSets = [];
 
-    for (let i = 0; i < exercises.length; i++) {
-      const summary = yield exercises[i].exerciseSummary;
-      console.log(summary);
+    exercises.forEach(async (exercise) => {
+      console.log(exercise);
+      const summary = await exercise.exerciseSummary;
+
+      console.log('summary', summary);
 
       let exerciseWithSets = {
         title: summary.title,
         sets: []
       };
 
-      for (let i = 0; i < exercises[i].sets; i++) {
+      for (let i = 0; i < exercise.sets; i++) {
         exerciseWithSets.sets.push({
-          reps: exercises[i].reps,
+          reps: exercise.reps,
           weight: 0,
-          rest: exercises[i].rest
+          rest: exercise.rest
         })
 
       }
       exercisesWithSets.push(exerciseWithSets);
-    }
+    })
 
     console.log(exercisesWithSets);
     this.set('exercisesWithSets', exercisesWithSets)
-  }),
+  },
 
   actions: {
     enteredRoute(model) {
-      this.getExercisesWithSets.perform(model);
+      this.getExercisesWithSets(model);
     },
     cancel() {
 
