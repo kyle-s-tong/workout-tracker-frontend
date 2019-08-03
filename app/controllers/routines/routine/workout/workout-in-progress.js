@@ -3,8 +3,8 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   exercisesWithSets: null,
 
-  getExercisesWithSets: async function (model) {
-    const exercises = model.workout.exercises;
+  getExercisesWithSets: async function () {
+    const exercises = this.get('model.workout.exercises');
 
     let exercisesWithSets = [];
 
@@ -31,8 +31,8 @@ export default Controller.extend({
   },
 
   actions: {
-    enteredRoute(model) {
-      this.getExercisesWithSets(model);
+    enteredRoute() {
+      this.getExercisesWithSets();
     },
     cancel() {
 

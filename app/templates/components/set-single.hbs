@@ -1,5 +1,16 @@
 <div class="flex justify-center">
-  {{set.reps}}
-  {{set.weight}}
-  {{set.rest}}
+    <form class="w-full h-16 p-4 xs:p-0 sm:p-2 flex justify-center items-center">
+      <div class="flex flex-col w-1/3 items-center">
+        <label for="reps" class="text-primary font-semibold p-2 flex items-center"> Reps </label>
+        {{input value=set.reps class="text-primary w-full p-2 items-center text-center" change=(action "formChanged")}}
+      </div>
+      <div class="flex flex-col w-1/3 items-center">
+        <label for="weight" class="text-primary font-semibold p-2 flex items-center"> Weight </label>
+        {{input value=set.weight class="text-primary w-full p-2 items-center text-center" change=(action "formChanged")}}
+      </div>
+      <div class="flex flex-col w-1/3 items-center">
+        <span class="text-primary font-semibold p-2 flex items-center">Rest</span>
+        {{input value=set.rest class="text-primary w-full p-2 items-center text-center" change=(action "formChanged")}}
+      </div>
+    </form>
 </div>

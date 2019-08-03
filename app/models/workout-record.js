@@ -1,8 +1,10 @@
 import DS from 'ember-data';
-const { Model, attr, hasMany } = DS;
+const { Model, attr, hasMany, belongsTo } = DS;
 
 export default Model.extend({
-  dateCreated: attr(),
+  dateRecorded: attr('date'),
+  cancelled: attr('boolean'),
 
+  workout: belongsTo('workout'),
   exerciseRecords: hasMany('exercise-record')
 });

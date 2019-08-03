@@ -18,8 +18,22 @@
 */
 
  export default {
-  'sm': '576px',
-  'md': '768px',
-  'lg': '992px',
-  'xl': '1200px',
+  'xs': { 'max': '374px' }, // Anything smaller than the default sizes
+  'sm': {
+          'min': '375px',
+          'max': '576px'
+        },
+  'md': {
+          'min': '577px',
+          'max': '768px'
+        },
+  'lg': {
+          'min': '769px',
+          'max': '992px'
+        },
+  'xl': {
+          'min': '993px',
+          'max': '1200px'
+        },
+  'xxl': '1201px' // Anything super big
 };

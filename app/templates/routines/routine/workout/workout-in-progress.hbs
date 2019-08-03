@@ -8,7 +8,7 @@
   {{#each exercisesWithSets as |exercise|}}
     {{#swiper-slide}}
       <div class="w-full h-full">
-        {{title-section title=exercise.title}}
+        {{title-section title=exercise.title class="mb-16 xs:mb-4 sm:mb-8"}}
 
         {{set-group sets=exercise.sets}}
       </div>
