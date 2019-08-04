@@ -3,6 +3,13 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   exerciseRecords: null,
 
+  swiperOptions: {
+    navigation: {
+      nextEl: '.swiper-next',
+      prevEl: '.swiper-previous'
+    }
+  },
+
   createExerciseRecords: async function () {
     const exercises = this.get('model.workout.exercises');
 
@@ -12,6 +19,7 @@ export default Controller.extend({
       const summary = await exercise.exerciseSummary;
 
       //Create a record for each exercise
+      //TODO: Get the last value if there's already an exercise record to put in the previous values.
       const record = this.store.createRecord('exercise-record', {
         title: summary.title,
         dateRecorded: this.model.dateRecorded,
@@ -47,8 +55,6 @@ export default Controller.extend({
 
     },
     finishWorkout() {
-    },
-    rest() {
       const records = this.get('exerciseRecords');
 
       records.forEach(record => {
@@ -56,6 +62,8 @@ export default Controller.extend({
           record.save();
         }
       })
+    },
+    rest() {
     },
     next() {
 
