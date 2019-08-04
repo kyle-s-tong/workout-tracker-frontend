@@ -1,14 +1,17 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   exerciseRecords: null,
 
-  swiperOptions: {
-    navigation: {
-      nextEl: '.swiper-next',
-      prevEl: '.swiper-previous'
+  swiperOptions: computed('swiper', function() {
+    return {
+      navigation: {
+        nextEl: '.swiper-next',
+        prevEl: '.swiper-previous'
+      }
     }
-  },
+  }),
 
   createExerciseRecords: async function () {
     const exercises = this.get('model.workout.exercises');
