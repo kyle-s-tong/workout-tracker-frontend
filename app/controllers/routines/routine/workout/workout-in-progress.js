@@ -43,6 +43,7 @@ export default Controller.extend({
       }
 
       record.set('sets', setsWithDetails);
+      await record.save();
 
       exerciseRecords.push(record);
     }));

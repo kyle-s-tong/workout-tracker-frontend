@@ -49,7 +49,7 @@ export default function() {
 
   this.get('/exercise-records');
   this.post('/exercise-records');
-  this.patch('/excercise-records/:id');
+  this.patch('/exercise-records/:id');
   this.get('/excercise-records/:id');
 
   this.get('/exercise-summaries');
