@@ -1,4 +1,6 @@
 @import 'tailwind.css';
+@import "ember-modal-dialog/ember-modal-structure.css";
+@import "ember-modal-dialog/ember-modal-appearance.css";
 
 html, body {
   height: 100vh;

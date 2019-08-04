@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
   exerciseRecords: null,
+  isShowingModal: false,
 
   swiperOptions: computed('swiper', function() {
     return {
@@ -43,7 +44,11 @@ export default Controller.extend({
       }
 
       record.set('sets', setsWithDetails);
-      await record.save();
+      try {
+        await record.save();
+      } catch (error) {
+        throw new Error(error);
+      }
 
       exerciseRecords.push(record);
     }));
@@ -67,7 +72,8 @@ export default Controller.extend({
         }
       })
     },
-    rest() {
+    rest(time) {
+      this.toggleProperty('isShowingModal');
     },
     next() {
 

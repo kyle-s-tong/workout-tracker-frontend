@@ -9,7 +9,11 @@
     {{#swiper-slide}}
       <div class="w-full h-full">
         {{title-section title=record.title class="mb-16 xs:mb-4 sm:mb-8"}}
-
+        {{#if isShowingModal}}
+          {{#modal-dialog onClose=(action (mut isShowingModal) false)}}
+            {{countdown-timer restTime=record}}
+          {{/modal-dialog}}
+        {{/if}}
         {{set-group sets=record.sets}}
       </div>
     {{/swiper-slide}}
