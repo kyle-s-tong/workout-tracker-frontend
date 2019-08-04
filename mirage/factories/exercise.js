@@ -1,7 +1,7 @@
 import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  sets() {
+  numberOfSets() {
     return 3;
   },
 

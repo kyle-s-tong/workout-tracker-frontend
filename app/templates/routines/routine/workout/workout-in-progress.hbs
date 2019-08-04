@@ -5,12 +5,12 @@
 </div>
 
 {{#swiper-container class="flex flex-auto w-full h-full"}}
-  {{#each exercisesWithSets as |exercise|}}
+  {{#each exerciseRecords as |record|}}
     {{#swiper-slide}}
       <div class="w-full h-full">
-        {{title-section title=exercise.title class="mb-16 xs:mb-4 sm:mb-8"}}
+        {{title-section title=record.title class="mb-16 xs:mb-4 sm:mb-8"}}
 
-        {{set-group sets=exercise.sets}}
+        {{set-group sets=record.sets}}
       </div>
     {{/swiper-slide}}
   {{/each}}

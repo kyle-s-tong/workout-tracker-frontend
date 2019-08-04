@@ -44,7 +44,13 @@ export default function() {
 
   this.get('/workout-records');
   this.post('/workout-records');
+  this.patch('/workout-records/:id');
   this.get('/workout-records/:id');
+
+  this.get('/exercise-records');
+  this.post('/exercise-records');
+  this.patch('/excercise-records/:id');
+  this.get('/excercise-records/:id');
 
   this.get('/exercise-summaries');
   this.get('/exercise-summaries/:id');

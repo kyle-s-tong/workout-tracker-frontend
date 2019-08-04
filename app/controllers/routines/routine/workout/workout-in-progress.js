@@ -1,47 +1,61 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  exercisesWithSets: null,
+  exerciseRecords: null,
 
-  getExercisesWithSets: async function () {
+  createExerciseRecords: async function () {
     const exercises = this.get('model.workout.exercises');
 
-    let exercisesWithSets = [];
+    let exerciseRecords = [];
 
     await Promise.all(exercises.map(async (exercise) => {
       const summary = await exercise.exerciseSummary;
 
-      let exerciseWithSets = {
+      //Create a record for each exercise
+      const record = this.store.createRecord('exercise-record', {
         title: summary.title,
+        dateRecorded: this.model.dateRecorded,
+        cancelled: false,
+        exercise: exercise,
+        workoutRecord: this.model,
         sets: []
-      };
+      })
 
-      for (let i = 0; i < exercise.sets; i++) {
-        exerciseWithSets.sets.push({
+      let setsWithDetails = [];
+
+      for (let i = 0; i < exercise.numberOfSets; i++) {
+        setsWithDetails.push({
           reps: exercise.reps,
           weight: 0,
           rest: exercise.rest
         })
-
       }
-      exercisesWithSets.push(exerciseWithSets);
+
+      record.set('sets', setsWithDetails);
+
+      exerciseRecords.push(record);
     }));
 
-    this.set('exercisesWithSets', exercisesWithSets)
+    this.set('exerciseRecords', exerciseRecords);
   },
 
   actions: {
     enteredRoute() {
-      this.getExercisesWithSets();
+      this.createExerciseRecords();
     },
     cancel() {
 
     },
     finishWorkout() {
-
     },
     rest() {
+      const records = this.get('exerciseRecords');
 
+      records.forEach(record => {
+        if (record.get('hasDirtyAttributes')) {
+          record.save();
+        }
+      })
     },
     next() {
 

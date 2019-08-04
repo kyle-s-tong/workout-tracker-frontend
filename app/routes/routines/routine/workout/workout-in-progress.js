@@ -10,8 +10,12 @@ export default Route.extend({
     const workout = this.modelFor('routines.routine.workout');
 
     const record = this.store.createRecord('workout-record', {
-      workout: workout
+      workout: workout,
+      dateRecorded: new Date(),
+      cancelled: false
     });
+
+    record.save();
 
     return record;
   }
