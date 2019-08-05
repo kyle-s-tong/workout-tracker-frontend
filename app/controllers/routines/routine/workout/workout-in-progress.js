@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 export default Controller.extend({
   exerciseRecords: null,
   isShowingModal: false,
+  restTime: null,
 
   swiperOptions: computed('swiper', function() {
     return {
@@ -72,7 +73,14 @@ export default Controller.extend({
         }
       })
     },
-    rest(time) {
+    rest() {
+      const records = this.get('exerciseRecords');
+
+      records.forEach(record => {
+        if (record.get('hasDirtyAttributes')) {
+          this.set('restTime', record.get('sets').firstObject.rest);
+        }
+      })
       this.toggleProperty('isShowingModal');
     },
     next() {

@@ -37,3 +37,14 @@ body > .ember-view {
   stroke: #F7958E;
   stroke-width: 2px;
 }
+
+.rest-time {
+  position: absolute;
+  left: 75px;
+  top: 105px;
+  text-align: center;
+  font-family: 'Roboto';
+  font-weight: 100;
+  font-size: 65px;
+  color: #F7958E;
+}

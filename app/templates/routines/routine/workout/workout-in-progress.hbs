@@ -11,7 +11,7 @@
         {{title-section title=record.title class="mb-16 xs:mb-4 sm:mb-8"}}
         {{#if isShowingModal}}
           {{#modal-dialog onClose=(action (mut isShowingModal) false)}}
-            {{countdown-timer restTime=record}}
+            {{countdown-timer restTime=restTime}}
           {{/modal-dialog}}
         {{/if}}
         {{set-group sets=record.sets}}
