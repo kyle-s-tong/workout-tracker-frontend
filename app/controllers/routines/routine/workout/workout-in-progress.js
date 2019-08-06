@@ -90,10 +90,16 @@ export default Controller.extend({
     rest() {
       const records = this.get('exerciseRecords');
 
-      records.forEach(record => {
+      records.forEach(async (record) => {
         if (record.get('hasDirtyAttributes')) {
           this.set('restTime', record.get('sets').firstObject.rest);
           this.countDownRest(this.get('restTime'));
+
+          try {
+            await record.save();
+          } catch (error) {
+            throw new Error(error);
+          }
         }
       })
       this.toggleProperty('isShowingModal');

@@ -18,31 +18,3 @@ body > .ember-view {
 .no-link {
   text-decoration: none !important;
 }
-
-.e-c-base {
-  fill: none;
-  stroke: #B6B6B6;
-  stroke-width: 4px
-}
-
-.e-c-progress {
-  fill: none;
-  stroke: #F7958E;
-  stroke-width: 4px;
-  transition: stroke-dashoffset 0.7s;
-}
-
-.e-c-pointer {
-  fill: #FFF;
-  stroke: #F7958E;
-  stroke-width: 2px;
-}
-
-.rest-time {
-  position: absolute;
-  left: 80px;
-  top: 115px;
-  text-align: center;
-  font-weight: 100;
-  font-size: 65px;
-}

@@ -9,15 +9,15 @@
     {{#swiper-slide}}
       <div class="w-full h-full">
         {{title-section title=record.title class="mb-16 xs:mb-4 sm:mb-8"}}
-        {{#if isShowingModal}}
-          {{#modal-dialog onClose=(action (mut isShowingModal) false)}}
-            {{countdown-timer restTime=restTime}}
-          {{/modal-dialog}}
-        {{/if}}
         {{set-group sets=record.sets}}
       </div>
     {{/swiper-slide}}
   {{/each}}
+  {{#if isShowingModal}}
+    {{#modal-dialog onClose=(action (mut isShowingModal) false)}}
+      {{countdown-timer restTime=restTime containerClassNames="shadow"}}
+    {{/modal-dialog}}
+  {{/if}}
 {{/swiper-container}}
 
 <div class="flex flex-row w-full h-16 mb-16 z-10">
