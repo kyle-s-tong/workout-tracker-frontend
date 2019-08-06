@@ -57,6 +57,20 @@ export default Controller.extend({
     this.set('exerciseRecords', exerciseRecords);
   },
 
+  countDownRest(time) {
+    let timeLeft = time;
+
+    var downloadTimer = setInterval(() => {
+      timeLeft -= 1;
+      this.set('restTime', timeLeft);
+
+      if (timeLeft <= 0) {
+        clearInterval(downloadTimer);
+        this.toggleProperty('isShowingModal');
+      }
+    }, 1000);
+  },
+
   actions: {
     enteredRoute() {
       this.createExerciseRecords();
@@ -79,6 +93,7 @@ export default Controller.extend({
       records.forEach(record => {
         if (record.get('hasDirtyAttributes')) {
           this.set('restTime', record.get('sets').firstObject.rest);
+          this.countDownRest(this.get('restTime'));
         }
       })
       this.toggleProperty('isShowingModal');
