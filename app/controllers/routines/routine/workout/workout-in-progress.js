@@ -16,7 +16,10 @@ export default Controller.extend({
   }),
 
   createExerciseRecords: async function () {
-    const exercises = this.get('model.workout.exercises');
+    // Have to do 2 awaits, otherwise the this.get('model.workout.exercises')
+    // doesn't return in time and the page won't render properly
+    const workout = await this.model.workout;
+    const exercises = await workout.exercises;
 
     let exerciseRecords = [];
 
@@ -31,7 +34,7 @@ export default Controller.extend({
         cancelled: false,
         exercise: exercise,
         workoutRecord: this.model,
-        sets: []
+        sets: [],
       })
 
       let setsWithDetails = [];
@@ -45,6 +48,7 @@ export default Controller.extend({
       }
 
       record.set('sets', setsWithDetails);
+
       try {
         await record.save();
       } catch (error) {
@@ -72,8 +76,8 @@ export default Controller.extend({
   },
 
   actions: {
-    enteredRoute() {
-      this.createExerciseRecords();
+    async enteredRoute() {
+      await this.createExerciseRecords();
     },
     cancel() {
 

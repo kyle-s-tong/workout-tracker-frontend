@@ -6,7 +6,7 @@ export default Route.extend({
     controller.send('enteredRoute');
   },
 
-  model() {
+  async model() {
     const workout = this.modelFor('routines.routine.workout');
 
     const record = this.store.createRecord('workout-record', {
@@ -15,7 +15,7 @@ export default Route.extend({
       cancelled: false
     });
 
-    record.save();
+    await record.save();
 
     return record;
   }
