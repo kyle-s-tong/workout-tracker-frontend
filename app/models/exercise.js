@@ -5,7 +5,7 @@ export default Model.extend({
   numberOfSets: attr(),
   reps: attr(),
   rest: attr(),
-  isSuperset: attr('boolean'),
+  superset: hasMany('exercise', { inverse: 'superset' }),
   exerciseSummary: belongsTo('exercise-summary'),
   exerciseRecords: hasMany('exercise-record'),
   workouts: hasMany('workout')

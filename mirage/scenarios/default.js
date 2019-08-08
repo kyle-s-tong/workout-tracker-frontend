@@ -10,6 +10,12 @@ export default function(server) {
       server.createList('workout', 2, { routines: [routine] }).forEach(workout => {
         server.createList('exercise', 5, { workouts: [workout] }).forEach(exercise => {
           server.create('exercise-summary', { exercises: [exercise] });
+
+          // Hacky way to test self-referencing relationships using mirage.
+          const workout = exercise.workouts.models[0];
+          exercise.update({
+            superset: workout.exercises.filter(result => result.id !== exercise.id)
+          });
         })
       })
     })

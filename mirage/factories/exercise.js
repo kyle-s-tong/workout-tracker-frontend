@@ -12,8 +12,4 @@ export default Factory.extend({
   rest() {
     return 60;
   },
-
-  isSuperset() {
-    return false;
-  },
 });
