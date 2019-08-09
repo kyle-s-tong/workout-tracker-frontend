@@ -62,7 +62,7 @@ export default Controller.extend({
     this.set('exerciseRecords', exerciseRecords);
   },
 
-  countDownRest(time) {
+  countDownRest: function (time) {
     let timeLeft = time;
 
     var downloadTimer = setInterval(() => {
@@ -76,34 +76,16 @@ export default Controller.extend({
     }, 1000);
   },
 
-  actions: {
-    async enteredRoute() {
-      await this.createExerciseRecords();
-    },
-    cancel() {
-
-    },
-    finishWorkout() {
-      const records = this.get('exerciseRecords');
-
-      records.forEach(record => {
+  updateRecordsOnRest: async function (records) {
+    await Promise.all(records.map(async (record) => {
         if (record.get('hasDirtyAttributes')) {
-          record.save();
-        }
-      })
-    },
-    rest() {
-      const records = this.get('exerciseRecords');
-
-      records.forEach(async (record) => {
-        if (record.get('hasDirtyAttributes')) {
-
           if (record.changedAttributes().sets) {
             this.set('restTime', record.changedAttributes().sets.lastObject.rest);
-            this.countDownRest(this.get('restTime'));
           } else {
             this.set('restTime', record.get('sets').firstObject.rest);
           }
+
+          this.countDownRest(this.get('restTime'));
 
           try {
             await record.save();
@@ -112,10 +94,31 @@ export default Controller.extend({
           }
         }
       })
-      this.toggleProperty('isShowingModal');
+    )
+  },
+
+  actions: {
+    enteredRoute: async function () {
+      await this.createExerciseRecords();
     },
-    next() {
+    cancel: function () {
 
     },
+    finishWorkout: function () {
+      const records = this.get('exerciseRecords');
+
+      records.forEach(record => {
+        if (record.get('hasDirtyAttributes')) {
+          record.save();
+        }
+      })
+    },
+    rest: async function() {
+      const records = this.get('exerciseRecords');
+
+      await this.updateRecordsOnRest(records);
+
+      this.toggleProperty('isShowingModal');
+    }
   }
 });
