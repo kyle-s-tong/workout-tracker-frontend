@@ -5,5 +5,6 @@ import Fragment from 'ember-data-model-fragments/fragment';
 export default Fragment.extend({
   reps: attr('number'),
   weight: attr('number'),
-  rest: attr('number')
+  rest: attr('number'),
+  isComplete: attr('boolean')
 });

@@ -32,18 +32,19 @@ export default Controller.extend({
         title: summary.title,
         dateRecorded: this.model.dateRecorded,
         cancelled: false,
+        isComplete: false,
         exercise: exercise,
         workoutRecord: this.model,
         sets: [],
       })
 
       let setsWithDetails = [];
-
       for (let i = 0; i < exercise.numberOfSets; i++) {
         setsWithDetails.push({
           reps: exercise.reps,
           weight: 0,
-          rest: exercise.rest
+          rest: exercise.rest,
+          isComplete: false
         })
       }
 
@@ -96,8 +97,13 @@ export default Controller.extend({
 
       records.forEach(async (record) => {
         if (record.get('hasDirtyAttributes')) {
-          this.set('restTime', record.get('sets').firstObject.rest);
-          this.countDownRest(this.get('restTime'));
+
+          if (record.changedAttributes().sets) {
+            this.set('restTime', record.changedAttributes().sets.lastObject.rest);
+            this.countDownRest(this.get('restTime'));
+          } else {
+            this.set('restTime', record.get('sets').firstObject.rest);
+          }
 
           try {
             await record.save();
