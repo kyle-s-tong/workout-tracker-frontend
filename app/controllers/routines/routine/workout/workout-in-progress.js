@@ -5,8 +5,12 @@ export default Controller.extend({
   exerciseRecords: null,
   isShowingModal: false,
   restTime: null,
+
   currentExerciseRecord: null,
   currentExerciseRecordIndex: 0,
+
+  currentSupersetStartIndex: null,
+  currentSupersetStart: null,
 
   swiperOptions: computed('swiper', function() {
     return {
@@ -106,6 +110,7 @@ export default Controller.extend({
 
     const nextRecordIndex = this.get('currentExerciseRecordIndex') + 1;
     const nextRecord = this.get('exerciseRecords')[nextRecordIndex];
+
     if (nextRecord) {
       const nextExerciseSuperset = await nextRecord.exercise.get('superset');
 
@@ -113,6 +118,35 @@ export default Controller.extend({
     }
 
     return false;
+  },
+
+  isSuperSetWithPreviousRecord: async function(record) {
+    const exercise = await record.exercise;
+
+    if (this.get('currentExerciseRecordIndex') !== 0) {
+      const previousRecordIndex = this.get('currentExerciseRecordIndex') - 1;
+      const previousRecord = this.get('exerciseRecords')[previousRecordIndex];
+      if (previousRecord) {
+        const previousExerciseSuperset = await previousRecord.exercise.get('superset');
+
+        return previousExerciseSuperset.includes(exercise);
+      }
+    }
+
+    return false;
+  },
+
+  updateCurrentRecordIndex: function(record = null, index = null) {
+    if (record !== null && index !== null) {
+      this.set('currentExerciseRecord', record);
+      this.set('currentExerciseRecordIndex', index);
+    } else {
+      const nextRecordIndex = this.get('currentExerciseRecordIndex') + 1;
+      const nextRecord = this.get('exerciseRecords')[nextRecordIndex];
+
+      this.set('currentExerciseRecord', nextRecord);
+      this.set('currentExerciseRecordIndex', nextRecordIndex);
+    }
   },
 
   actions: {
@@ -141,22 +175,36 @@ export default Controller.extend({
         recordsToUpdate = [this.get('currentExerciseRecord')];
       }
 
-      const superSetWithNextRecord = await this.isSuperSetWithNextRecord(recordsToUpdate.lastObject);
+      const record = recordsToUpdate.lastObject;
+      const superSetWithNextRecord = await this.isSuperSetWithNextRecord(record);
+      const superSetWithPreviousRecord = await this.isSuperSetWithPreviousRecord(record);
+
       if (superSetWithNextRecord) {
-        const currentRecord = this.get('currentExerciseRecordIndex');
+        const currentRecordIndex = this.get('currentExerciseRecordIndex');
+
+        if (!superSetWithPreviousRecord) {
+          this.set('currentSupersetStartIndex', currentRecordIndex);
+          this.set('currentSupersetStart', record);
+        }
 
         // Save and move straight to the next exercise
         await this.updateRecordsOnRest(recordsToUpdate, false);
-        this.set('currentExerciseRecordIndex', currentRecord + 1);
+        this.updateCurrentRecordIndex();
+      } else if (superSetWithPreviousRecord) {
+        await this.updateRecordsOnRest(recordsToUpdate, true);
+
+        //If the last set in a superset, go back to the beginning of the superset to start again
+        const currentSupersetStartIndex = this.get('currentSupersetStartIndex');
+        const currentSupersetStart = this.get('currentSupersetStart');
+
+        this.set('currentExerciseRecordIndex', currentSupersetStartIndex);
+        this.updateCurrentRecordIndex(currentSupersetStart, currentSupersetStartIndex);
       } else {
         await this.updateRecordsOnRest(recordsToUpdate, true);
       }
     },
     next: function() {
-      const nextRecordIndex = this.get('currentExerciseRecordIndex') + 1;
-      const nextRecord = this.get('exerciseRecords')[nextRecordIndex];
-
-      this.set('currentExerciseRecord', nextRecord);
+      this.updateCurrentRecordIndex();
     }
   }
 });
