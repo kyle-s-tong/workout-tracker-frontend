@@ -136,12 +136,17 @@ export default Controller.extend({
     return false;
   },
 
-  updateCurrentRecordIndex: function(record = null, index = null) {
+  updateCurrentRecordIndex: function(record = null, index = null, direction = 'up') {
     if (record !== null && index !== null) {
       this.set('currentExerciseRecord', record);
       this.set('currentExerciseRecordIndex', index);
     } else {
-      const nextRecordIndex = this.get('currentExerciseRecordIndex') + 1;
+      let counter = 1;
+      if (direction === 'down' && this.get('currentExerciseRecordIndex') !== 0) {
+        counter = -1;
+      }
+
+      const nextRecordIndex = this.get('currentExerciseRecordIndex') + counter;
       const nextRecord = this.get('exerciseRecords')[nextRecordIndex];
 
       this.set('currentExerciseRecord', nextRecord);
@@ -205,6 +210,9 @@ export default Controller.extend({
     },
     next: function() {
       this.updateCurrentRecordIndex();
+    },
+    previous: function() {
+      this.updateCurrentRecordIndex(null, null, 'down')
     }
   }
 });
