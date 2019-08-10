@@ -162,7 +162,14 @@ export default Controller.extend({
       this.set('currentExerciseRecord', exerciseRecords.firstObject);
     },
     cancel: function () {
+      const exerciseRecords = this.get('exerciseRecords');
+      exerciseRecords.forEach(record => {
+        record.destroyRecord();
+      })
 
+      this.model.destroyRecord();
+
+      this.transitionToRoute('routines.routine.workout', this.model.workout);
     },
     finishWorkout: function () {
       const records = this.get('exerciseRecords');

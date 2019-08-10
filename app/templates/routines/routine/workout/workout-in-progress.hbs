@@ -4,7 +4,7 @@
   {{footer-button buttonNumber=1 buttonText="Finish workout" click=(action "finishWorkout") class="w-1/2 flex-grow"}}
 </div>
 
-{{#swiper-container class="flex flex-auto w-full h-full" options=swiperOptions registerAs=workoutSwiper currentSlide=currentExerciseRecordIndex}}
+{{#swiper-container class="flex flex-auto w-full h-full" options=swiperOptions currentSlide=currentExerciseRecordIndex}}
   {{#each exerciseRecords as |record|}}
     {{#swiper-slide }}
       <div class="w-full h-full">
