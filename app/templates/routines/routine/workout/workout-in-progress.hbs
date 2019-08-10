@@ -4,9 +4,9 @@
   {{footer-button buttonNumber=1 buttonText="Finish workout" click=(action "finishWorkout") class="w-1/2 flex-grow"}}
 </div>
 
-{{#swiper-container class="flex flex-auto w-full h-full" options=swiperOptions}}
+{{#swiper-container class="flex flex-auto w-full h-full" options=swiperOptions registerAs=workoutSwiper currentSlide=currentExerciseRecordIndex}}
   {{#each exerciseRecords as |record|}}
-    {{#swiper-slide registerAs=workoutSwiper}}
+    {{#swiper-slide }}
       <div class="w-full h-full">
         {{title-section title=record.title class="mb-16 xs:mb-4 sm:mb-8"}}
         {{set-group sets=record.sets}}
@@ -25,5 +25,5 @@
 </div>
 <div class="flex flex-row w-full h-16 fixed bottom z-10">
   {{footer-button buttonNumber=1 buttonText="Previous" class="w-1/2 flex-grow" swiperClass="swiper-previous"}}
-  {{footer-button buttonNumber=1 buttonText="Next" class="w-1/2 flex-grow" swiperClass="swiper-next"}}
+  {{footer-button buttonNumber=1 buttonText="Next" class="w-1/2 flex-grow" click=(action "next") swiperClass="swiper-next"}}
 </div>

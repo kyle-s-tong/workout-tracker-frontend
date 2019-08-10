@@ -5,6 +5,8 @@ export default Controller.extend({
   exerciseRecords: null,
   isShowingModal: false,
   restTime: null,
+  currentExerciseRecord: null,
+  currentExerciseRecordIndex: 0,
 
   swiperOptions: computed('swiper', function() {
     return {
@@ -16,10 +18,7 @@ export default Controller.extend({
   }),
 
   createExerciseRecords: async function () {
-    // Have to do 2 awaits, otherwise the this.get('model.workout.exercises')
-    // doesn't return in time and the page won't render properly
-    const workout = await this.model.workout;
-    const exercises = await workout.exercises;
+    const exercises = await this.model.workout.get('exercises');
 
     let exerciseRecords = [];
 
@@ -59,11 +58,12 @@ export default Controller.extend({
       exerciseRecords.push(record);
     }));
 
-    this.set('exerciseRecords', exerciseRecords);
+    return exerciseRecords;
   },
 
   countDownRest: function (time) {
     let timeLeft = time;
+    this.toggleProperty('isShowingModal');
 
     var downloadTimer = setInterval(() => {
       timeLeft -= 1;
@@ -76,30 +76,51 @@ export default Controller.extend({
     }, 1000);
   },
 
-  updateRecordsOnRest: async function (records) {
+  updateRecordsOnRest: async function (records, showRestModal = true) {
+    //Coerce into array to make use of below function.
+    if (!(records instanceof Array)) {
+      records = [records];
+    }
+
     await Promise.all(records.map(async (record) => {
-        if (record.get('hasDirtyAttributes')) {
-          if (record.changedAttributes().sets) {
-            this.set('restTime', record.changedAttributes().sets.lastObject.rest);
-          } else {
-            this.set('restTime', record.get('sets').firstObject.rest);
-          }
-
-          this.countDownRest(this.get('restTime'));
-
-          try {
-            await record.save();
-          } catch (error) {
-            throw new Error(error);
-          }
+      if (showRestModal) {
+        if (record.changedAttributes().sets) {
+          this.set('restTime', record.changedAttributes().sets.lastObject.rest);
+        } else {
+          this.set('restTime', record.get('sets').firstObject.rest);
         }
+        this.countDownRest(this.get('restTime'));
+      }
+
+      try {
+        await record.save();
+      } catch (error) {
+        throw new Error(error);
+      }
       })
     )
   },
 
+  isSuperSetWithNextRecord: async function(record) {
+    const exercise = await record.exercise;
+
+    const nextRecordIndex = this.get('currentExerciseRecordIndex') + 1;
+    const nextRecord = this.get('exerciseRecords')[nextRecordIndex];
+    if (nextRecord) {
+      const nextExerciseSuperset = await nextRecord.exercise.get('superset');
+
+      return nextExerciseSuperset.includes(exercise);
+    }
+
+    return false;
+  },
+
   actions: {
     enteredRoute: async function () {
-      await this.createExerciseRecords();
+      const exerciseRecords = await this.createExerciseRecords();
+
+      this.set('exerciseRecords', exerciseRecords);
+      this.set('currentExerciseRecord', exerciseRecords.firstObject);
     },
     cancel: function () {
 
@@ -114,11 +135,28 @@ export default Controller.extend({
       })
     },
     rest: async function() {
-      const records = this.get('exerciseRecords');
+      let recordsToUpdate = this.get('exerciseRecords').filter(record => record.get('hasDirtyAttributes'));
 
-      await this.updateRecordsOnRest(records);
+      if (!recordsToUpdate || recordsToUpdate.length === 0) {
+        recordsToUpdate = [this.get('currentExerciseRecord')];
+      }
 
-      this.toggleProperty('isShowingModal');
+      const superSetWithNextRecord = await this.isSuperSetWithNextRecord(recordsToUpdate.lastObject);
+      if (superSetWithNextRecord) {
+        const currentRecord = this.get('currentExerciseRecordIndex');
+
+        // Save and move straight to the next exercise
+        await this.updateRecordsOnRest(recordsToUpdate, false);
+        this.set('currentExerciseRecordIndex', currentRecord + 1);
+      } else {
+        await this.updateRecordsOnRest(recordsToUpdate, true);
+      }
+    },
+    next: function() {
+      const nextRecordIndex = this.get('currentExerciseRecordIndex') + 1;
+      const nextRecord = this.get('exerciseRecords')[nextRecordIndex];
+
+      this.set('currentExerciseRecord', nextRecord);
     }
   }
 });
