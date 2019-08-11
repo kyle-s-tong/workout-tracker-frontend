@@ -138,7 +138,6 @@ export default Controller.extend({
   },
 
   updateCurrentRecordIndex: function(record = null, index = null, direction = 'up') {
-
     if (record !== null && index !== null) {
       this.set('currentExerciseRecordIndex', index);
     } else {
