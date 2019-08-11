@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { computed, observer } from '@ember/object';
-import { on } from '@ember/object/evented';
 
 export default Controller.extend({
   exerciseRecords: null,
