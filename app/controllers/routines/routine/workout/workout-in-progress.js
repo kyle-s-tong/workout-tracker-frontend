@@ -6,14 +6,12 @@ export default Controller.extend({
   isShowingModal: false,
   restTime: null,
 
+  currentSupersetStartIndex: null,
   currentExerciseRecordIndex: 0,
   currentExerciseRecordObserver: observer('currentExerciseRecordIndex', function () {
     this.set('currentExerciseRecord', this.exerciseRecords[this.currentExerciseRecordIndex]);
   }),
   currentExerciseRecord: null,
-
-  currentSupersetStartIndex: null,
-  currentSupersetStart: null,
 
   swiperOptions: computed('swiper', function() {
     return {
