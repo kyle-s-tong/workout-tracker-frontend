@@ -4,9 +4,13 @@
   {{footer-button buttonNumber=1 buttonText="Finish workout" click=(action "finishWorkout") class="w-1/2 flex-grow"}}
 </div>
 
-{{#swiper-container class="flex flex-auto w-full h-full" options=swiperOptions currentSlide=currentExerciseRecordIndex}}
+{{#swiper-container
+  class="flex flex-auto w-full h-full"
+  options=swiperOptions
+  currentSlide=currentExerciseRecordIndex
+}}
   {{#each exerciseRecords as |record|}}
-    {{#swiper-slide }}
+    {{#swiper-slide}}
       <div class="w-full h-full">
         {{title-section title=record.title class="mb-16 xs:mb-4 sm:mb-8"}}
         {{set-group sets=record.sets}}

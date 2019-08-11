@@ -10,6 +10,6 @@ export default Factory.extend({
   },
 
   rest() {
-    return 60;
+    return 5;
   },
 });

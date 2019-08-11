@@ -1,13 +1,17 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
+import { on } from '@ember/object/evented';
 
 export default Controller.extend({
   exerciseRecords: null,
   isShowingModal: false,
   restTime: null,
 
-  currentExerciseRecord: null,
   currentExerciseRecordIndex: 0,
+  currentExerciseRecordObserver: observer('currentExerciseRecordIndex', function () {
+    this.set('currentExerciseRecord', this.exerciseRecords[this.currentExerciseRecordIndex]);
+  }),
+  currentExerciseRecord: null,
 
   currentSupersetStartIndex: null,
   currentSupersetStart: null,
@@ -137,8 +141,8 @@ export default Controller.extend({
   },
 
   updateCurrentRecordIndex: function(record = null, index = null, direction = 'up') {
+
     if (record !== null && index !== null) {
-      this.set('currentExerciseRecord', record);
       this.set('currentExerciseRecordIndex', index);
     } else {
       let counter = 1;
@@ -147,9 +151,7 @@ export default Controller.extend({
       }
 
       const nextRecordIndex = this.get('currentExerciseRecordIndex') + counter;
-      const nextRecord = this.get('exerciseRecords')[nextRecordIndex];
 
-      this.set('currentExerciseRecord', nextRecord);
       this.set('currentExerciseRecordIndex', nextRecordIndex);
     }
   },
@@ -159,7 +161,7 @@ export default Controller.extend({
       const exerciseRecords = await this.createExerciseRecords();
 
       this.set('exerciseRecords', exerciseRecords);
-      this.set('currentExerciseRecord', exerciseRecords.firstObject);
+      this.set('currentExerciseRecordIndex', 0)
     },
     cancel: function () {
       const exerciseRecords = this.get('exerciseRecords');
@@ -196,7 +198,6 @@ export default Controller.extend({
 
         if (!superSetWithPreviousRecord) {
           this.set('currentSupersetStartIndex', currentRecordIndex);
-          this.set('currentSupersetStart', record);
         }
 
         // Save and move straight to the next exercise
@@ -207,10 +208,8 @@ export default Controller.extend({
 
         //If the last set in a superset, go back to the beginning of the superset to start again
         const currentSupersetStartIndex = this.get('currentSupersetStartIndex');
-        const currentSupersetStart = this.get('currentSupersetStart');
 
         this.set('currentExerciseRecordIndex', currentSupersetStartIndex);
-        this.updateCurrentRecordIndex(currentSupersetStart, currentSupersetStartIndex);
       } else {
         await this.updateRecordsOnRest(recordsToUpdate, true);
       }
