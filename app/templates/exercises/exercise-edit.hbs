@@ -1,0 +1,9 @@
+<div>
+  {{#form-for model as |exercise|}}
+    {{exercise.number-field "numberOfSets"}}
+    {{exercise.number-field "reps"}}
+    {{exercise.number-field "rest"}}
+
+    {{exercise.submit}}
+  {{/form-for}}
+</div>

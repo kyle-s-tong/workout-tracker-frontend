@@ -2,8 +2,11 @@
   <div
     class="h-full flex flex-col shadow border rounded border-gray-light bg-white p-1 m-1 justify-between"
   >
-    <div class="text-center text-xl">
-      {{summary.title}}
+    <div class="flex flex-row justify-between">
+      <div class="text-center ml-10 text-xl flex-grow flex justify-center items-center">
+        {{summary.title}}
+      </div>
+      {{menu-button linkRoute="exercises.exercise-edit" model=exercise class="p-1 m-1 rounded-full"}}
     </div>
 
     {{#if exercise}}

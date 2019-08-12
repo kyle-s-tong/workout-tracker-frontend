@@ -41,6 +41,7 @@ export default function() {
   this.get('/workouts');
   this.post('/workouts');
   this.get('/workouts/:id');
+  this.patch('/workouts/:id');
 
   this.get('/workout-records');
   this.post('/workout-records');
@@ -56,6 +57,12 @@ export default function() {
 
   this.get('/exercise-summaries');
   this.get('/exercise-summaries/:id');
+
+  this.patch('/exercises/:id');
+  this.get('/exercises/:id');
+  this.get('/exercises');
+
+
 
   this.post('/routines', function(schema) {
     let attrs = this.normalizedRequestAttrs();
@@ -78,8 +85,4 @@ export default function() {
     return schema.routines.all();
   });
   this.get('/routines/:id');
-
-  this.get('/exercises');
-  this.get('/exercises/:id');
-
 }
