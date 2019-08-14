@@ -4,6 +4,6 @@ const { Model, attr, hasMany, belongsTo } = DS;
 export default Model.extend({
   title: attr('string'),
   exercises: hasMany('exercise'),
-  routines: hasMany('routine'),
+  routine: belongsTo('routine'),
   user: belongsTo('user')
 });

@@ -8,5 +8,5 @@ export default Model.extend({
   superset: hasMany('exercise', { inverse: 'superset' }),
   exerciseSummary: belongsTo('exercise-summary'),
   exerciseRecords: hasMany('exercise-record'),
-  workouts: hasMany('workout')
+  workout: belongsTo('workout')
 });
