@@ -1,12 +1,23 @@
-{{#link-to linkRoute summary class="flex h-32 flex-col w-4/5 no-link text-primary"}}
+<div class="flex h-32 flex-col w-4/5 text-primary">
   <div
     class="h-full flex flex-col shadow border rounded border-gray-light bg-white p-1 m-1 justify-between"
   >
     <div class="flex flex-row justify-between">
-      <div class="text-center ml-10 text-xl flex-grow flex justify-center items-center">
-        {{summary.title}}
-      </div>
-      {{menu-button linkRoute="exercises.exercise-edit" model=exercise class="p-1 m-1 rounded-full"}}
+      {{#link-to linkRoute summary class="no-link text-primary flex-grow flex justify-center items-center"}}
+        <div class="text-center ml-10 text-xl flex justify-center items-center">
+          {{summary.title}}
+        </div>
+      {{/link-to}}
+      {{#basic-dropdown renderInPlace=true as |dd|}}
+        {{#dd.trigger class="p-2"}}
+          {{fa-icon "ellipsis-h"}}
+        {{/dd.trigger}}
+
+        {{#dd.content}}
+          <p class="pt-3 p-1">Edit</p>
+          <p class="pt-3 p-1">Delete</p>
+        {{/dd.content}}
+      {{/basic-dropdown}}
     </div>
 
     {{#if exercise}}
@@ -20,4 +31,4 @@
       Last activity: 21st June 2019
     </div>
   </div>
-{{/link-to}}
+</div>
