@@ -8,14 +8,14 @@
       class="flex-grow flex flex-col items-center h-full w-full content-around"
     >
       {{#each this.model.exercises as |exercise|}}
-        {{exercise-tile summary=exercise.exerciseSummary exercise=exercise linkRoute="exercises.exercise-summary" class="w-full flex flex-col items-center"}}
+        {{exercise-tile summary=exercise.exerciseSummary exercise=exercise linkRoute="exercise-summaries.exercise-summary" class="w-full flex flex-col items-center"}}
       {{/each}}
       {{#if placeholdersNeeded}}
-        {{content-tile-add linkRoute="exercises.exercise-add" class="w-full flex flex-col items-center"}}
+        {{content-tile-add linkRoute="routines.routine.workout.exercise.exercise-add" class="w-full flex flex-col items-center"}}
       {{/if}}
     </section>
   {{else}}
-    {{content-tile-add linkRoute="exercises.exercise-add" class="w-full flex flex-col items-center"}}
+    {{content-tile-add linkRoute="routines.routine.workout.exercise.exercise-add" class="w-full flex flex-col items-center"}}
   {{/if}}
 </div>
 

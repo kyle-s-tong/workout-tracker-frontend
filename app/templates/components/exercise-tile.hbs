@@ -8,16 +8,7 @@
           {{summary.title}}
         </div>
       {{/link-to}}
-      {{#basic-dropdown renderInPlace=true as |dd|}}
-        {{#dd.trigger class="p-2"}}
-          {{fa-icon "ellipsis-h"}}
-        {{/dd.trigger}}
-
-        {{#dd.content}}
-          <p class="pt-3 p-1">Edit</p>
-          <p class="pt-3 p-1">Delete</p>
-        {{/dd.content}}
-      {{/basic-dropdown}}
+      {{tile-dropdown editRoute="routines.routine.workout.exercise.exercise-edit" editContent=exercise}}
     </div>
 
     {{#if exercise}}

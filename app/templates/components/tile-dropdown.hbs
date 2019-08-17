@@ -1,0 +1,18 @@
+{{#basic-dropdown renderInPlace=true as |dd|}}
+  {{#dd.trigger class="p-2"}}
+    {{fa-icon "ellipsis-h"}}
+  {{/dd.trigger}}
+
+  {{#dd.content}}
+    <p class="pt-3 p-1">
+      {{#link-to editRoute editContent class="no-link text-primary"}}
+        Edit
+      {{/link-to}}
+    </p>
+    <p class="pt-3 p-1">
+      {{#link-to deleteRoute deleteContent class="no-link text-primary"}}
+        Delete
+      {{/link-to}}
+    </p>
+  {{/dd.content}}
+{{/basic-dropdown}}
