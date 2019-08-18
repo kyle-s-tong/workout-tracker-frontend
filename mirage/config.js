@@ -60,6 +60,7 @@ export default function() {
 
   this.patch('/exercises/:id');
   this.get('/exercises/:id');
+  this.delete('/exercises/:id');
   this.get('/exercises');
 
 

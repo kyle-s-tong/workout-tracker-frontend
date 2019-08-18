@@ -16,6 +16,7 @@ Router.map(function() {
         this.route('exercise', function() {
           this.route('exercise-add', { path: 'add' });
           this.route('exercise-edit', { path: ':exercise_id/edit' });
+          this.route('exercise-delete', { path: 'delete' });
         });
         this.route('workout-in-progress', { path: 'record-workout' });
         this.route('workout-edit', { path: '/edit' });

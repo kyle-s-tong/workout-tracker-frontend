@@ -8,7 +8,12 @@
           {{summary.title}}
         </div>
       {{/link-to}}
-      {{tile-dropdown editRoute="routines.routine.workout.exercise.exercise-edit" editContent=exercise}}
+      {{tile-dropdown
+        editRoute="routines.routine.workout.exercise.exercise-edit"
+        editContent=exercise
+        deleteRoute="routines.routine.workout.exercise.exercise-delete"
+        deleteContent=exercise
+      }}
     </div>
 
     {{#if exercise}}
