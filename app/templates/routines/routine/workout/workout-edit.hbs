@@ -1,1 +1,7 @@
-{{outlet}}
+<div>
+  {{#form-for model as |f|}}
+    {{f.text-field "title"}}
+
+    {{f.submit action=(action "save" model)}}
+  {{/form-for}}
+</div>

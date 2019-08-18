@@ -42,6 +42,7 @@ export default function() {
   this.post('/workouts');
   this.get('/workouts/:id');
   this.patch('/workouts/:id');
+  this.delete('/workouts/:id');
 
   this.get('/workout-records');
   this.post('/workout-records');
