@@ -20,8 +20,11 @@ Router.map(function() {
         });
         this.route('workout-in-progress', { path: 'record-workout' });
         this.route('workout-edit', { path: '/edit' });
+        this.route('workout-delete', { path: '/delete' });
       });
       this.route('workout-add', { path: 'workouts/add' })
+      this.route('routine-delete', { path: '/delete' });
+      this.route('routine-edit', { path: '/edit' });
     })
     this.route('routine-add', { path: 'add' });
   });
