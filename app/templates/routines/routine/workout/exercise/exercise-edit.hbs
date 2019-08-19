@@ -1,5 +1,5 @@
-<div>
-  {{#form-for model as |exercise|}}
+<div class="h-screen flex flex-col items-center">
+  {{#form-for model classNames="flex flex-col flex-grow items-center w-full bg-white" as |exercise|}}
     {{exercise.number-field "numberOfSets"}}
     {{exercise.number-field "reps"}}
     {{exercise.number-field "rest"}}

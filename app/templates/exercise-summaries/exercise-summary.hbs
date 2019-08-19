@@ -1,4 +1,9 @@
-<div>
-  {{this.model.title}}
-  {{this.model.description}}
+<div class="flex flex-col items-center">
+  {{title-section title=this.model.title}}
+
+  <div class="w-4/5 justify-center items-center">
+    <p class="text-center text-primary">
+      {{this.model.description}}
+    </p>
+  </div>
 </div>
