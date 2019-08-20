@@ -1,7 +1,7 @@
 <div class="h-screen flex flex-col items-center justify-center">
-  {{#form-for model as |f|}}
-    {{f.text-field "title"}}
+  {{#form-for model classNames="form" as |f|}}
+    {{f.text-field "title" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
 
-    {{f.submit action=(action "save" model)}}
+    {{f.submit class="form-button" action=(action "save" model)}}
   {{/form-for}}
 </div>

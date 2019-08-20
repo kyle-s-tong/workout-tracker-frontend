@@ -1,9 +1,10 @@
 <div class="h-screen flex flex-col items-center">
-  {{#form-for model classNames="flex flex-col flex-grow items-center w-full bg-white" as |exercise|}}
-    {{exercise.number-field "numberOfSets" fieldClasses="flex flex-col p-2" labelClasses="text-xs"}}
-    {{exercise.number-field "reps" fieldClasses="flex flex-col pt-2 pb-3" inputClasses="bg-primary-light rounded shadow-inner text-primary p-1" labelClasses="text-xs text-primary pb-1 text-left"}}
-    {{exercise.number-field "rest" fieldClasses="flex flex-col p-2" labelClasses="text-xs"}}
+  {{title-section title=this.model.exerciseSummary.title}}
+  {{#form-for model classNames="form" as |exercise|}}
+    {{exercise.number-field "numberOfSets" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+    {{exercise.number-field "reps" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+    {{exercise.number-field "rest" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
 
-    {{exercise.submit action=(action "save" model) buttonClasses="p-2"}}
+    {{exercise.submit class="form-button" action=(action "save" model)}}
   {{/form-for}}
 </div>

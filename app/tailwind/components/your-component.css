@@ -15,3 +15,23 @@
  @apply .bg-blue-dark;
 }
 */
+
+.form-field {
+  @apply .flex .flex-col .pt-2 .pb-3;
+}
+
+.form-label {
+  @apply .text-xs .text-primary .pb-1 .text-left .uppercase .font-semibold;
+}
+
+.form-input {
+  @apply .bg-primary-light .rounded .shadow-inner .text-primary .p-1;
+}
+
+.form-button {
+  @apply .p-2 .mt-4 .uppercase .text-primary .border-2 .rounded .border-primary;
+}
+
+.form {
+  @apply .flex .flex-col .flex-grow .items-center .w-full .bg-white;
+}
