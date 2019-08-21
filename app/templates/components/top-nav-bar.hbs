@@ -1,7 +1,17 @@
-<nav class="z-50 h-8">
+<nav class="z-50 h-16">
   {{#if session.isAuthenticated}}
-    <button {{action "logout"}}>Logout</button>
-    {{session.data.authenticated.token}}
+  <div class="flex justify-between">
+    <div class="flex flex-grow text-center items-center justify-start text-primary">
+      <div class="p-2">
+        {{fa-icon "dumbbell" size="2x"}}
+      </div>
+      <p class="uppercase">Workout Tracker</p>
+    </div>
+
+    <div class="p-4 text-primary">
+      {{fa-icon "bars" size="2x"}}
+    </div>
+  </div>
   {{else}}
     {{#link-to "login"}}
       Login
