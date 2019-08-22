@@ -18,3 +18,37 @@ body > .ember-view {
 .no-link {
   text-decoration: none !important;
 }
+
+.overlay {
+  background: rgba(0,0,0,0);
+  transition: background .3s ease, transform .3s .3s ease;
+}
+
+.overlay.show {
+  background: rgba(0,0,0,.7);
+  transition: background .3s ease;
+  transform: translateX(0);
+}
+
+.overlay .inner {
+  /*transition: .3s ease;*/
+  width: 290px;
+  animation: menu-slide-close .3s;
+}
+
+@keyframes menu-slide-open {
+  /*from {
+      transform: translateX(-100%);
+  }*/
+  to {
+      transform: translateX(0);
+  }
+}
+@keyframes menu-slide-close {
+  from {
+      transform: translateX(0);
+  }
+  /*to {
+      transform: translateX(-100%);
+  }*/
+}
