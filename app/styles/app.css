@@ -21,25 +21,27 @@ body > .ember-view {
 
 .overlay {
   background: rgba(0,0,0,0);
-  transition: background .3s ease, transform .3s .3s ease;
+  transition: background .3s ease;
 }
 
 .overlay.show {
   background: rgba(0,0,0,.7);
   transition: background .3s ease;
-  transform: translateX(0);
+}
+
+.overlay.show .inner {
+  animation: menu-slide-open .3s forwards;
 }
 
 .overlay .inner {
-  /*transition: .3s ease;*/
-  width: 290px;
+  transition: .3s ease;
   animation: menu-slide-close .3s;
 }
 
 @keyframes menu-slide-open {
-  /*from {
-      transform: translateX(-100%);
-  }*/
+  from {
+      transform: translateX(100%);
+  }
   to {
       transform: translateX(0);
   }
@@ -48,7 +50,7 @@ body > .ember-view {
   from {
       transform: translateX(0);
   }
-  /*to {
-      transform: translateX(-100%);
-  }*/
+  to {
+      transform: translateX(100%);
+  }
 }

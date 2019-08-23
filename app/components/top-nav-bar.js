@@ -1,12 +1,16 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
-import { get } from '@ember/object';
 
 export default Component.extend({
   session: inject(),
+  showingMobileMenu: false,
+
   actions: {
-    logout() {
-      get(this, 'session').invalidate();
+    logout: function() {
+      this.get('session').invalidate();
+    },
+    toggleMenu: function () {
+      this.set('showingMobileMenu', !this.showingMobileMenu);
     }
   }
 });
