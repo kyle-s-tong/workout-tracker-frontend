@@ -7,8 +7,8 @@
           {{fa-icon "dumbbell" size="2x"}}
         </div>
         <p class="uppercase">Workout Tracker</p>
-        <div class="overlay fixed flex pin-t pin-r w-screen z-50 {{if showingMobileMenu "show h-screen"}}">
-          {{side-nav-bar isShowing=showingMobileMenu class="bg-white pin-r h-screen w-2/3 fixed z-50" toggleMenu=(action "toggleMenu")}}
+        <div class="overlay fixed flex pin-t pin-r w-screen z-50 justify-end {{if showingMobileMenu "show h-screen overflow-y-auto"}}">
+          {{side-nav-bar isShowing=showingMobileMenu class="bg-white pin-r pin-t h-screen w-2/3 fixed z-50 inner" toggleMenu=(action "toggleMenu")}}
         </div>
       </div>
 

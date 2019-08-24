@@ -21,21 +21,21 @@ body > .ember-view {
 
 .overlay {
   background: rgba(0,0,0,0);
-  transition: background .3s ease;
+  transition: .3s ease all;
 }
 
 .overlay.show {
   background: rgba(0,0,0,.7);
-  transition: background .3s ease;
 }
 
 .overlay.show .inner {
   animation: menu-slide-open .3s forwards;
+  transition: .3s ease;
 }
 
 .overlay .inner {
   transition: .3s ease;
-  animation: menu-slide-close .3s;
+  animation: menu-slide-close .3s forwards;
 }
 
 @keyframes menu-slide-open {

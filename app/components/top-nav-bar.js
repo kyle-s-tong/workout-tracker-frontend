@@ -6,9 +6,6 @@ export default Component.extend({
   showingMobileMenu: false,
 
   actions: {
-    logout: function() {
-      this.get('session').invalidate();
-    },
     toggleMenu: function () {
       this.set('showingMobileMenu', !this.showingMobileMenu);
     }

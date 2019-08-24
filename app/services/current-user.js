@@ -15,9 +15,24 @@ export default Service.extend({
     }
   },
 
+  logout: function() {
+    this.get('session').invalidate();
+  },
+
   getUserId() {
     if (this.get('session.isAuthenticated')) {
       return this.session.data.authenticated.userId;
+    }
+
+    return null;
+  },
+
+  getUserName() {
+    const userId = this.getUserId();
+
+    if (userId) {
+      const user = this.store.peekRecord('user', userId);
+      return user.firstName;
     }
 
     return null;

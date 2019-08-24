@@ -1,7 +1,22 @@
-<p>Hi user number {{session.authenticated.userId}}</p>
-<button {{action toggleMenu}}>
-  Close
-</button>
-<nav>
-
-</nav>
+<div class="flex flex-col h-screen">
+  <div class="h-16 flex items-center justify-between shadow-bottom">
+    <button {{action toggleMenu}} class="text-primary p-4 absolute">
+      {{fa-icon "times" size="2x"}}
+    </button>
+    <p class="flex-grow text-center">
+      {{#if userFirstName}}
+        Hi, {{userFirstName}}!
+      {{/if}}
+    </p>
+  </div>
+  <nav class="flex-grow flex flex-col justify-between">
+    {{#link-to "routines"}}
+      <button class="text-primary w-full h-16 self-end" {{action toggleMenu}}>
+        My routines
+      </button>
+    {{/link-to}}
+    <button {{action "logout"}} class="uppercase text-white bg-primary font-semibold w-full h-16 self-end">
+      Log out
+    </button>
+  </nav>
+</div>
