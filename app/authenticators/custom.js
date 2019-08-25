@@ -31,7 +31,7 @@ export default BaseAuthenticator.extend({
         method: 'POST'
       };
 
-      return fetch(`${ENV.API_HOST}/users/login`, options).then(function(response){
+      return fetch(`${ENV.API_HOST}/security/login`, options).then(function(response){
         return response.json();
       }).then(data => {
           return resolve(data);

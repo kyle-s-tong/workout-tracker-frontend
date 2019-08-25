@@ -32,7 +32,10 @@ export default Service.extend({
 
     if (userId) {
       const user = this.store.peekRecord('user', userId);
-      return user.firstName;
+
+      if (user) {
+        return user.firstName;
+      }
     }
 
     return null;

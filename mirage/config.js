@@ -13,7 +13,6 @@ export default function() {
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
   this.urlPrefix = 'http://localhost:8000';
-
   /*
     Shorthand cheatsheet:
 
@@ -26,7 +25,7 @@ export default function() {
     http://www.ember-cli-mirage.com/docs/v0.4.x/shorthands/
   */
 
-  this.post('/users/login', () => {
+  this.post('/security/login', () => {
     return {
       "authenticated": true,
       "token": "65319d545c6757b0efa1a6a3470ba53d",
@@ -34,39 +33,39 @@ export default function() {
     }
   });
 
-  this.get('/users');
-  this.get('/users/:id');
-  this.patch('/users/:id');
+  this.get('/api/users');
+  this.get('/api/users/:id');
+  this.patch('/api/users/:id');
 
-  this.get('/workouts');
-  this.post('/workouts');
-  this.get('/workouts/:id');
-  this.patch('/workouts/:id');
-  this.delete('/workouts/:id');
+  this.get('/api/workouts');
+  this.post('/api/workouts');
+  this.get('/api/workouts/:id');
+  this.patch('/api/workouts/:id');
+  this.delete('/api/workouts/:id');
 
-  this.get('/workout-records');
-  this.post('/workout-records');
-  this.patch('/workout-records/:id');
-  this.get('/workout-records/:id');
-  this.delete('/workout-records/:id');
+  this.get('/api/workout-records');
+  this.post('/api/workout-records');
+  this.patch('/api/workout-records/:id');
+  this.get('/api/workout-records/:id');
+  this.delete('/api/workout-records/:id');
 
-  this.get('/exercise-records');
-  this.post('/exercise-records');
-  this.patch('/exercise-records/:id');
-  this.get('/exercise-records/:id');
-  this.delete('/exercise-records/:id');
+  this.get('/api/exercise-records');
+  this.post('/api/exercise-records');
+  this.patch('/api/exercise-records/:id');
+  this.get('/api/exercise-records/:id');
+  this.delete('/api/exercise-records/:id');
 
-  this.get('/exercise-summaries');
-  this.get('/exercise-summaries/:id');
+  this.get('/api/exercise-summaries');
+  this.get('/api/exercise-summaries/:id');
 
-  this.patch('/exercises/:id');
-  this.get('/exercises/:id');
-  this.delete('/exercises/:id');
-  this.get('/exercises');
+  this.patch('/api/exercises/:id');
+  this.get('/api/exercises/:id');
+  this.delete('/api/exercises/:id');
+  this.get('/api/exercises');
 
 
 
-  this.post('/routines', function(schema) {
+  this.post('/api/routines', function(schema) {
     let attrs = this.normalizedRequestAttrs();
 
 
@@ -77,7 +76,7 @@ export default function() {
     return schema.routines.create(attrs);
   });
 
-  this.get('/routines', (schema, request) => {
+  this.get('/api/routines', (schema, request) => {
     const user = request.queryParams.userId;
 
     if (user) {
@@ -86,7 +85,7 @@ export default function() {
 
     return schema.routines.all();
   });
-  this.get('/routines/:id');
+  this.get('/api/routines/:id');
 
   this.passthrough();
 }

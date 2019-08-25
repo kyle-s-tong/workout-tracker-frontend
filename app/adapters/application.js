@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 export default DS.JSONAPIAdapter.extend({
     session: service(),
     host: ENV.API_HOSTNAME,
+    namespace: ENV.API_NAMESPACE,
     headers: computed('session.data.authenticated.token', function () {
         const headers = {};
         if (this.session.isAuthenticated) {
