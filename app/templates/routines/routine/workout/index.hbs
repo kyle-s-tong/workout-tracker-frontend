@@ -5,7 +5,7 @@
 
   {{#if this.model.exercises}}
     <section
-      class="flex-grow flex flex-col items-center h-full w-full content-around"
+      class="flex-grow flex flex-col items-center h-full w-full content-around mb-20"
     >
       {{#each this.model.exercises as |exercise|}}
         {{exercise-tile summary=exercise.exerciseSummary exercise=exercise linkRoute="exercise-summaries.exercise-summary" class="w-full flex flex-col items-center"}}
