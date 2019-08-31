@@ -1,4 +1,5 @@
-{{#swiper-container
+{{!-- TODO: Decide if we want to add in exercise summaries here or somewhere else  --}}
+{{!-- {{#swiper-container
   class="flex flex-auto w-full h-full"
 }}
     {{#swiper-slide}}
@@ -11,4 +12,16 @@
         hi 2
       </div>
     {{/swiper-slide}}
-{{/swiper-container}}
+{{/swiper-container}} --}}
+
+<div class="h-screen flex flex-col items-center">
+  {{title-section title="Add an exercise"}}
+  {{#form-for model classNames="form" as |exercise|}}
+    {{exercise.text-field "title" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+    {{exercise.number-field "numberOfSets" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+    {{exercise.number-field "reps" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+    {{exercise.number-field "rest" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+
+    {{exercise.submit "Save exercise" class="form-button" action=(action "save" model)}}
+  {{/form-for}}
+</div>

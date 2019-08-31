@@ -4,15 +4,17 @@
   {{/dd.trigger}}
 
   {{#dd.content}}
-    <p class="pt-3 p-1">
-      {{#link-to editRoute editContent class="no-link text-primary"}}
-        Edit
-      {{/link-to}}
-    </p>
-    <p class="pt-3 p-1">
-      {{#link-to deleteRoute deleteContent class="no-link text-primary"}}
-        Delete
-      {{/link-to}}
-    </p>
+    <div class="flex flex-col p-1 pl-2 pr-2 shadow border rounded border-gray-light">
+      <p class="pt-2 p-1">
+        {{#link-to editRoute editContent class="no-link text-primary"}}
+          Edit
+        {{/link-to}}
+      </p>
+      <p class="pt-3 p-1">
+        {{#link-to deleteRoute deleteContent class="no-link text-primary"}}
+          Delete
+        {{/link-to}}
+      </p>
+    </div>
   {{/dd.content}}
 {{/basic-dropdown}}

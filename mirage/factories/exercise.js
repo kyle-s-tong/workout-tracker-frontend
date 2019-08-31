@@ -1,6 +1,10 @@
 import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
+  title(i) {
+    return `Exercise ${i}`
+  },
+
   numberOfSets() {
     return 3;
   },
