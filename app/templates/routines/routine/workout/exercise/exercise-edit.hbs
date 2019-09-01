@@ -4,6 +4,9 @@
     {{exercise.number-field "numberOfSets" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
     {{exercise.number-field "reps" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
     {{exercise.number-field "rest" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+    {{#if supersetExercises}}
+      {{exercise.select-field "superset" supersetExercises optionValuePath="id" optionLabelPath="title" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label" multiple=true}}
+    {{/if}}
 
     {{exercise.submit "Save" class="form-button" action=(action "save" model)}}
   {{/form-for}}
