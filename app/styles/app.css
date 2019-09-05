@@ -55,3 +55,25 @@ body > .ember-view {
       transform: translateX(100%);
   }
 }
+
+.ember-power-select-trigger {
+  background-color: #f1dadb;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, .06);
+  color: #bc4b51;
+  padding: .25rem;
+  display: flex;
+  padding-top: .5rem;
+  border: none;
+}
+
+.ember-power-select-multiple-option {
+  background-color: white;
+  color: #bc4b51;
+  border: none;
+  margin: 0.25rem;
+}
+
+.ember-power-select-status-icon {
+  color: #bc4b51;
+  border-color: #bc4b51 transparent transparent transparent;
+}

@@ -1,13 +1,25 @@
 <div class="h-screen flex flex-col items-center">
   {{title-section title=this.model.exerciseSummary.title}}
-  {{#form-for model classNames="form" as |exercise|}}
-    {{exercise.number-field "numberOfSets" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
-    {{exercise.number-field "reps" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
-    {{exercise.number-field "rest" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
-    {{#if supersetExercises}}
-      {{exercise.select-field "superset" supersetExercises optionValuePath="id" optionLabelPath="title" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label" multiple=true}}
-    {{/if}}
+  <div class="w-1/2">
+    {{#form-for model classNames="form" as |exercise|}}
+      {{exercise.number-field "numberOfSets" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+      {{exercise.number-field "reps" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+      {{exercise.number-field "rest" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+      {{!-- Add a custom label because this isn't part of form for --}}
+      <div class="form-label self-start pt-2">
+        Superset
+      </div>
+      {{#power-select-multiple
+        options=model.workout.exercises
+        selected=model.superset
+        placeholder="Select supersets"
+        onchange=(action (mut model.superset))
+        as |supersetExercise|
+      }}
+        {{supersetExercise.title}}
+      {{/power-select-multiple}}
 
-    {{exercise.submit "Save" class="form-button" action=(action "save" model)}}
-  {{/form-for}}
+      {{exercise.submit "Save" class="form-button" action=(action "save" model)}}
+    {{/form-for}}
+  </div>
 </div>
