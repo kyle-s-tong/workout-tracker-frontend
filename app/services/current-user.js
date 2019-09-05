@@ -6,7 +6,7 @@ export default Service.extend({
   session: service(),
   store: service(),
 
-  load() {
+  async load() {
     const userId = this.getUserId();
     if (userId) {
       return this.store.findRecord('user', userId);

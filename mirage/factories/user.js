@@ -14,6 +14,6 @@ export default Factory.extend({
   },
 
   activeRoutine() {
-    return 3
+    return null;
   },
 });
