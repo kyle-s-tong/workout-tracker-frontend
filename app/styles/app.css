@@ -64,6 +64,11 @@ body > .ember-view {
   display: flex;
   padding-top: .5rem;
   border: none;
+  min-width: 100%;
+}
+
+.ember-power-select-trigger-multiple-input::placeholder {
+  color: #bc4b51;
 }
 
 .ember-power-select-multiple-option {

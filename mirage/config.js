@@ -62,6 +62,7 @@ export default function() {
   this.get('/api/exercises/:id');
   this.delete('/api/exercises/:id');
   this.get('/api/exercises');
+  this.post('/api/exercises');
 
 
 

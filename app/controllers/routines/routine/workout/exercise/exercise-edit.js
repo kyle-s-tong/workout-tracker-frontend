@@ -10,8 +10,6 @@ export default Controller.extend({
           const routine = await workout.routine;
           this.transitionToRoute('routines.routine.workout', routine.id, workout.id)
       })
-    },
-    enteredRoute: function() {
     }
   }
 });
