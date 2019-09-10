@@ -12,7 +12,6 @@ export default Route.extend({
     const record = this.store.createRecord('workout-record', {
       workout: workout,
       dateRecorded: new Date(),
-      cancelled: false
     });
 
     await record.save();

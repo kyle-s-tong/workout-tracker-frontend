@@ -28,12 +28,10 @@ export default Controller.extend({
     let exerciseRecords = [];
 
     await Promise.all(exercises.map(async (exercise) => {
-      const summary = await exercise.exerciseSummary;
-
       //Create a record for each exercise
       //TODO: Get the last value if there's already an exercise record to put in the previous values.
       const record = this.store.createRecord('exercise-record', {
-        title: summary.title,
+        title: exercise.title,
         dateRecorded: this.model.dateRecorded,
         cancelled: false,
         isComplete: false,
