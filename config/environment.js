@@ -46,7 +46,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.API_HOSTNAME = 'WorkoutTrackerNzBackend-prod.wgpc9u3sab.ap-southeast-2.elasticbeanstalk.com';
+    ENV.API_NAMESPACE = 'api';
   }
 
   return ENV;
