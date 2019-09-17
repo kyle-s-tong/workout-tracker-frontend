@@ -46,7 +46,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.API_HOSTNAME = 'WorkoutTrackerNzBackend-prod.wgpc9u3sab.ap-southeast-2.elasticbeanstalk.com';
+    ENV.API_HOSTNAME = 'http://WorkoutTrackerNzBackend-prod.wgpc9u3sab.ap-southeast-2.elasticbeanstalk.com';
     ENV.API_NAMESPACE = 'api';
   }
 
