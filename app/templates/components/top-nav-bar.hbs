@@ -1,21 +1,21 @@
 <nav class="z-50 h-16">
-    <div class="flex justify-between h-full">
-      <div class="flex flex-grow text-center items-center justify-start text-primary h-full">
-        {{!-- TODO: Make this link somewhere --}}
-        <div class="p-2">
-          {{fa-icon "dumbbell" size="2x"}}
-        </div>
-        <p class="uppercase">Workout Tracker</p>
+  <div class="flex justify-between h-full">
+    <div class="flex flex-grow text-center items-center justify-start text-primary h-full">
+      {{!-- TODO: Make this link somewhere --}}
+      <div class="p-2">
+        {{fa-icon "dumbbell" size="2x"}}
+      </div>
+      <p class="uppercase">Workout Tracker</p>
       {{#if session.isAuthenticated}}
         <div class="overlay fixed flex pin-t pin-r w-screen z-50 justify-end {{if showingMobileMenu "show h-screen overflow-y-auto"}}">
           {{side-nav-bar isShowing=showingMobileMenu class="bg-white pin-r pin-t h-screen w-2/3 fixed z-50 inner" toggleMenu=(action "toggleMenu")}}
         </div>
       {{/if}}
-      </div>
-      {{#if session.isAuthenticated}}
-        <button class="text-primary p-4" onclick={{action "toggleMenu"}}>
-          {{fa-icon "bars" size="2x"}}
-        </button>
-      {{/if}}
     </div>
+    {{#if session.isAuthenticated}}
+      <button class="text-primary p-4" onclick={{action "toggleMenu"}}>
+        {{fa-icon "bars" size="2x"}}
+      </button>
+    {{/if}}
+  </div>
 </nav>
