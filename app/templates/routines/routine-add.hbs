@@ -1,7 +1,10 @@
-<div>
-  {{#form-for model as |f|}}
-    {{f.text-field "name"}}
+<div class="h-screen flex flex-col items-center">
+  {{title-section title="Add a routine"}}
+  <div class="w-1/2">
+    {{#form-for model classNames="form" as |f|}}
+      {{f.text-field "name" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
 
-    {{f.submit action=(action "save" model)}}
-  {{/form-for}}
+      {{f.submit class="form-button" action=(action "save" model)}}
+    {{/form-for}}
+  </div>
 </div>
