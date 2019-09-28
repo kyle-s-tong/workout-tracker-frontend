@@ -22,7 +22,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model() {
     let userId = this.currentUser.getUserId();
     return this.store.query('routine', {
-      userId: userId
+      userId: userId,
+      include: 'workouts'
     });
   }
 });

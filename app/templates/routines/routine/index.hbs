@@ -10,6 +10,7 @@
       {{#each this.model.workouts as |workout|}}
         {{content-tile
           content=workout
+          title=workout.title
           linkRoute="routines.routine.workout"
           editRoute="routines.routine.workout.workout-edit"
           deleteRoute="routines.routine.workout.workout-delete"

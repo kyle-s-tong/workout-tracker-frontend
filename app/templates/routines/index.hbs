@@ -8,7 +8,7 @@
       class="flex-grow flex flex-col items-center h-full w-full content-around"
     >
       {{#each this.model as |routine|}}
-        {{content-tile content=routine linkRoute="routines.routine" class="w-full flex flex-col items-center"}}
+        {{content-tile content=routine title=routine.name linkRoute="routines.routine" class="w-full flex flex-col items-center"}}
       {{/each}}
       {{#if placeholdersNeeded}}
         {{content-tile-add linkRoute="routines.routine-add" class="w-full flex flex-col items-center"}}
