@@ -66,7 +66,7 @@ export default Controller.extend({
 
   countDownRest: function (time) {
     let timeLeft = time;
-    this.toggleProperty('isShowingModal');
+    this.set('isShowingModal', true);
 
     var downloadTimer = setInterval(() => {
       timeLeft -= 1;
@@ -74,7 +74,7 @@ export default Controller.extend({
 
       if (timeLeft <= 0) {
         clearInterval(downloadTimer);
-        this.toggleProperty('isShowingModal');
+        this.set('isShowingModal', false);
       }
     }, 1000);
   },
