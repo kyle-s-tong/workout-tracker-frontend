@@ -5,15 +5,13 @@ export default Controller.extend({
   currentUser: service(),
 
   actions: {
-    save(model) {
-      this.store.findRecord('user', this.currentUser.getUserId())
-        .then((user) => {
-          model.set('user', user);
-          model.save()
-            .then((workout) => {
-              this.transitionToRoute('routines.routine.workout', workout.id)
-            })
-        })
+    async save(model) {
+      const user = await this.store.findRecord('user', this.currentUser.getUserId())
+
+      model.set('user', user);
+
+      const workout = await model.save();
+      this.transitionToRoute('routines.routine.workout', workout.id);
     }
   }
 });
