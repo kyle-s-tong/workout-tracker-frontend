@@ -1,10 +1,10 @@
 <div class="h-screen flex flex-col items-center">
   {{title-section title=this.model.name}}
   <div class="w-1/2">
-  {{#form-for model as |f|}}
-    {{f.text-field "title" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
+    {{#form-for model as |f|}}
+      {{f.text-field "title" fieldClasses="form-field" inputClasses="form-input" labelClasses="form-label"}}
 
-    {{f.submit class="form-button" action=(action "save" model)}}
-  {{/form-for}}
+      {{f.submit class="form-button" action=(action "save" model)}}
+    {{/form-for}}
   </div>
 </div>
