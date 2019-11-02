@@ -22,7 +22,21 @@ export default Controller.extend({
     }
   }),
 
-  createExerciseRecords: async function () {
+  getLatestWorkoutRecord: async function() {
+    const workoutRecords = await this.store.query('workout-record', {
+      filter: {
+        'workout.id': this.model.workout.get('id'),
+      }
+    });
+    const latestWorkoutRecordId = Math.max(...workoutRecords.map(record => { return record.id; }));
+    const latestWorkoutRecord = await this.store.findRecord('workout-record', latestWorkoutRecordId, {
+      include: 'exercise-records'
+    });
+
+    return latestWorkoutRecord;
+  },
+
+  createExerciseRecords: async function (latestWorkoutRecord = null) {
     const exercises = await this.model.workout.get('exercises');
 
     let exerciseRecords = [];
@@ -51,12 +65,6 @@ export default Controller.extend({
       }
 
       record.set('sets', setsWithDetails);
-
-      try {
-        await record.save();
-      } catch (error) {
-        throw new Error(error);
-      }
 
       exerciseRecords.push(record);
     }));
@@ -94,14 +102,7 @@ export default Controller.extend({
         }
         this.countDownRest(this.get('restTime'));
       }
-
-      try {
-        await record.save();
-      } catch (error) {
-        throw new Error(error);
-      }
-      })
-    )
+    }))
   },
 
   isSuperSetWithNextRecord: async function(record) {
@@ -152,7 +153,14 @@ export default Controller.extend({
 
   actions: {
     enteredRoute: async function () {
-      const exerciseRecords = await this.createExerciseRecords();
+      let exerciseRecords;
+
+      const latestWorkout = await this.getLatestWorkoutRecord();
+      if (latestWorkout) {
+        exerciseRecords = await this.createExerciseRecords(latestWorkout);
+      } else {
+        exerciseRecords = await this.createExerciseRecords();
+      }
 
       this.set('exerciseRecords', exerciseRecords);
       this.set('currentExerciseRecordIndex', 0)
@@ -167,14 +175,15 @@ export default Controller.extend({
 
       this.transitionToRoute('routines.routine.workout', this.model.workout);
     },
-    finishWorkout: function () {
-      const records = this.get('exerciseRecords');
+    finishWorkout: async function () {
+      await this.model.save();
 
+      const records = this.get('exerciseRecords');
       records.forEach(record => {
         if (record.get('hasDirtyAttributes')) {
           record.save();
         }
-      })
+      });
     },
     rest: async function() {
       let recordsToUpdate = this.get('exerciseRecords').filter(record => record.get('hasDirtyAttributes'));

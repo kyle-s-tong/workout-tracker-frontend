@@ -14,8 +14,6 @@ export default Route.extend({
       dateRecorded: new Date(),
     });
 
-    await record.save();
-
     return record;
   }
 });

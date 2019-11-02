@@ -15,12 +15,6 @@ export default Controller.extend({
 
   actions: {
     async startWorkout() {
-      const workoutRecords = await this.store.query('workout-record', {
-        filter: {
-          'workout.id': this.model.id
-        }
-      });
-      console.log(workoutRecords);
       this.transitionToRoute('routines.routine.workout.workout-in-progress');
     }
   }
