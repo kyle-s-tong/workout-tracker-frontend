@@ -28,6 +28,11 @@ export default Controller.extend({
         'workout.id': this.model.workout.get('id'),
       }
     });
+
+    if (workoutRecords === null || workoutRecords === 'undefined') {
+      return null;
+    }
+
     const latestWorkoutRecordId = Math.max(...workoutRecords.map(record => { return record.id; }));
     const latestWorkoutRecord = await this.store.findRecord('workout-record', latestWorkoutRecordId, {
       include: 'exercise-records'
@@ -38,6 +43,10 @@ export default Controller.extend({
 
   createExerciseRecords: async function (latestWorkoutRecord = null) {
     const exercises = await this.model.workout.get('exercises');
+
+    if (latestWorkoutRecord && latestWorkoutRecord.exerciseRecords.length !== 0) {
+      return latestWorkoutRecord.exerciseRecords;
+    }
 
     let exerciseRecords = [];
 
