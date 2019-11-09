@@ -26,6 +26,7 @@ export default Controller.extend({
     const workoutRecords = await this.store.query('workout-record', {
       filter: {
         'workout.id': this.model.workout.get('id'),
+        'is-complete': true
       }
     });
 
@@ -105,6 +106,12 @@ export default Controller.extend({
     await Promise.all(records.map(async (record) => {
       if (showRestModal) {
         if (record.changedAttributes().sets) {
+          const setChanges = record.changedAttributes().sets.firstObject;
+          setChanges.content.forEach((set, index) => {
+            if (set.hasDirtyAttributes) {
+              record.sets.content[index].set('isComplete', true);
+            }
+          })
           this.set('restTime', record.changedAttributes().sets.lastObject.rest);
         } else {
           this.set('restTime', record.get('sets').firstObject.rest);
@@ -189,10 +196,21 @@ export default Controller.extend({
 
       const records = this.get('exerciseRecords');
       records.forEach(record => {
+        const setsComplete = record.sets.content.every(set => {
+          return set.isComplete === true
+        });
+
+        if (setsComplete) {
+          record.set('isComplete', true);
+        }
+
         if (record.get('hasDirtyAttributes')) {
           record.save();
         }
       });
+
+      // TODO: transition to a summary page which will be created later
+      this.transitionToRoute('routines.routine.workout', this.model.workout);
     },
     rest: async function() {
       let recordsToUpdate = this.get('exerciseRecords').filter(record => record.get('hasDirtyAttributes'));
